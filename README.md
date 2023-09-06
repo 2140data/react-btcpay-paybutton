@@ -10,12 +10,17 @@ The React BTCPay Server Pay Button is a highly customizable and easy-to-integrat
 - **Highly Customizable**: Modify the button text, currency, and more.
 - **Secure**: All transactions are processed through your BTCPay Server.
 
+## Requirements
+
+- **BTCPay Server**: You must have access to a BTCPay Server, either self-hosted or through a third-party in order to handle payments.
+- **React Application**: This component is intended to be used within an existing React application.
+
 ## Installation
 
 ### Manual Installation
 
-1. Download the `ReactBtcPayButton.jsx` and `ReactBtcPayButton.css` files from this repository.
-2. Place them in a folder within your React project, e.g., `src/components/BTCPayButton/`.
+1. Download the `ReactBtcPayButton.jsx` file from this repository.
+2. Place the file in a folder within your React project, e.g., `src/components/BTCPayButton/`.
 
 ## Quick Start
 
@@ -51,12 +56,8 @@ To tailor the React BTCPay Server Pay Button to your specific needs, you'll need
 - `BTCPAY_DOMAIN`: Set this to your own BTCPay Server domain.
 - `storeId`: Replace this with your BTCPay Server store ID.
 - `CURRENCY_OPTIONS`: If you wish to accept payments in currencies other than SATS, add them to this array with commas (SATS, BTC, USD, EUR, etc.).
-- Edit `ReactBtcPayButton.css` as needed.
+- Edit the custom CSS styles in `ReactBtcPayButton.jsx` as needed.
 
-## Requirements
-
-- **Your Own BTCPay Server**: You must have access to a BTCPay Server, either self-hosted or through a third-party in order to handle payments.
-- **React Application**: This component is intended to be used within an existing React application.
 
 ## Documentation
 
