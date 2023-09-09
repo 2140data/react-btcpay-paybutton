@@ -28,7 +28,7 @@ export const ReactBtcPayButton = ({
 }) => {
 
     // Adjust custom CSS styles
-    const BtcPayButtonStyles = `
+    const btcPayButtonStyles = `
     .btcpay-form {
         display: inline-flex;
         align-items: center;
@@ -323,7 +323,7 @@ export const ReactBtcPayButton = ({
         <>
             {/* Add the <style> blocks to inject the CSS */}
             <style>
-                {BtcPayButtonStyles}
+                {btcPayButtonStyles}
             </style>
             <style>
                 {dynamicStyles}
