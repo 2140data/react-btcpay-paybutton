@@ -1,0 +1,22 @@
+{
+  "name": "react-btcpayserver-paybutton",
+  "version": "1.0.0",
+  "description": "Easily add a BTCPay Server Pay Button into your React app for BTC payments",
+  "main": "src/ReactBtcPayButton.jsx",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2140data/react-btcpayserver-paybutton.git"
+  },
+  "author": "Ant @2140data",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^17.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/2140data/react-btcpayserver-paybutton/issues"
+  },
+  "homepage": "https://github.com/2140data/react-btcpayserver-paybutton#readme"
+}

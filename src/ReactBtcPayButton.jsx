@@ -2,13 +2,14 @@
 
 // Import necessary modules from React and the stylesheet
 import React, { useState, useEffect } from 'react';
-// import './ReactBtcPayButton.css';
+// import PropTypes from 'prop-types';
 
 // Define the ReactBtcPayButton component
 export const ReactBtcPayButton = ({
     // Default settings that can be overridden when using this component
     jsonResponse = true,
     currency: currencyProp = '',
+    currencyOptions = ['SATS'],
     defaultPaymentMethod = '',
     checkoutDesc = '',
     orderId = '',
@@ -16,63 +17,17 @@ export const ReactBtcPayButton = ({
     notifyEmail = '',
     browserRedirect = '',
     checkoutQueryString = '',
-    submitBtnText = ''
+    submitBtnText = '',
+    btcPayDomain = '',
+    storeId = '',
+    inputMin = 1,
+    inputMax = 21000000000000,
+    sliderMin = 1,
+    sliderMax = 250000,
+    customStyles = ''
 }) => {
 
-
-    // -------------------------------------------------- //
-    //                                                    //
-    //                   START SETUP                      //
-    //                JUST 3 EASY STEPS                   //
-    //                                                    //
-    // -------------------------------------------------- //
-
-    // -------------------------------------------------- //
-    // STEP 1: Add your BTCPay domain and StoreID         //
-    // -------------------------------------------------- //
-
-    // Domain and Store ID for the BTCPay Server
-    const BTCPAY_DOMAIN = 'PUT_YOUR_BTCPAYSERVER_DOMAIN_URL_HERE';  // ADD YOUR BTC PAY SERVER DOMAIN URL HERE
-    const storeId = 'PUT_YOUR_BTCPAYSERVER_STORE_ID_HERE';  // ADD YOUR BTC PAY SERVER STORE ID HERE
-
-    // -------------------------------------------------- //
-    // STEP 2: Adjust the slider and input ranges         //
-    // -------------------------------------------------- //
-
-    // Minimum and maximum values for the input and slider
-    const INPUT_MIN = 1;
-    const INPUT_MAX = 21000000000000;
-    const SLIDER_MIN = 1;
-    const SLIDER_MAX = 250000;
-
-    // -------------------------------------------------- //
-    // STEP 3: Add component to your app (example below)  //
-    // -------------------------------------------------- //
-
-    // Example (put it in App.js or somewhere else):
-
-    // <ReactBtcPayButton
-    //   currency='SATS'
-    //   defaultPaymentMethod='SATS'
-    //   checkoutDesc='Your Description Here'
-    //   orderId='Your Order ID'
-    //   serverIpn='https://your-server-ipn.com'
-    //   notifyEmail='your-email@example.com'
-    //   browserRedirect='https://your-redirect.com'
-    //   checkoutQueryString=''
-    //   submitBtnText='Request Invoice'
-    // />
-
-    // -------------------------------------------------- //
-    // OPTIONAL: Add currencies to dropdown (if needed)   //
-    // OPTIONAL: Adjust custom CSS styles (if needed)   //
-    // -------------------------------------------------- //
-
-    // Define an array of currency options
-    const CURRENCY_OPTIONS = ['SATS'];  // OPTIONAL: Add more currencies, ex: BTC, USD, EUR, etc.
-    // *** NOTE: If adding more currencies, a currency converter and code customization will be required.
-
-     // Adjust custom CSS styles
+    // Adjust custom CSS styles
     const BtcPayButtonStyles = `
     .btcpay-form {
         display: inline-flex;
@@ -309,13 +264,8 @@ export const ReactBtcPayButton = ({
     }
   `;
 
-    // -------------------------------------------------- //
-    //                                                    //
-    //                   END USER SETUP                   //
-    //            DO NOT CHANGE ANYTHING BELOW!           //
-    //                                                    //
-    // -------------------------------------------------- //
-
+    // Create a constant to hold any custom user CSS
+    const dynamicStyles = `${customStyles}`;
 
     // State variables to hold the price and currency
     const [price, setPrice] = useState(1);
@@ -324,7 +274,7 @@ export const ReactBtcPayButton = ({
     // Function to handle changes in the slider
     const handleSliderChange = (e) => {
         const sanitizedValue = parseInt(e.target.value, 10);
-        if (!isNaN(sanitizedValue) && sanitizedValue >= SLIDER_MIN && sanitizedValue <= SLIDER_MAX) {
+        if (!isNaN(sanitizedValue) && sanitizedValue >= sliderMin && sanitizedValue <= sliderMax) {
             setPrice(sanitizedValue);
         }
     };
@@ -332,7 +282,7 @@ export const ReactBtcPayButton = ({
     // Function to handle changes in the price input
     const handlePriceChange = (e) => {
         let newPrice = parseInt(e.target.value.replace(/,/g, ''), 10);
-        if (!isNaN(newPrice) && newPrice >= INPUT_MIN && newPrice <= INPUT_MAX) {
+        if (!isNaN(newPrice) && newPrice >= inputMin && newPrice <= inputMax) {
             setPrice(newPrice);
         }
     };
@@ -362,23 +312,26 @@ export const ReactBtcPayButton = ({
     useEffect(() => {
         if (!window.btcpay) {
             const script = document.createElement('script');
-            script.src = `https://${BTCPAY_DOMAIN}/modal/btcpay.js`;
+            script.src = `https://${btcPayDomain}/modal/btcpay.js`;
             document.getElementsByTagName('head')[0].appendChild(script);
         }
-    }, []);
+    }, [btcPayDomain]);
 
 
     // The form that will be displayed
     return (
         <>
-            {/* Add the <style> block to inject the CSS */}
+            {/* Add the <style> blocks to inject the CSS */}
             <style>
                 {BtcPayButtonStyles}
+            </style>
+            <style>
+                {dynamicStyles}
             </style>
             <form
                 className="btcpay-form btcpay-form--block"
                 method="POST"
-                action={`https://${BTCPAY_DOMAIN}/api/v1/invoices`}
+                action={`https://${btcPayDomain}/api/v1/invoices`}
                 onSubmit={handleFormSubmit}
             >
                 {/* Customizable fields for price and currency */}
@@ -387,13 +340,13 @@ export const ReactBtcPayButton = ({
                         className="btcpay-input-price"
                         type="text"
                         name="price"
-                        min={INPUT_MIN}
-                        max={INPUT_MAX}
+                        min={inputMin}
+                        max={inputMax}
                         value={formatPrice(price)}
                         onChange={handlePriceChange}
                     />
                     <select name="currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
-                        {CURRENCY_OPTIONS.map((curr) => (
+                        {currencyOptions.map((curr) => (
                             <option key={curr} value={curr}>{curr}</option>
                         ))}
                     </select>
@@ -415,8 +368,8 @@ export const ReactBtcPayButton = ({
                     <input
                         className="btcpay-input-range"
                         type="range"
-                        min={SLIDER_MIN}
-                        max={SLIDER_MAX}
+                        min={sliderMin}
+                        max={sliderMax}
                         value={price}
                         onChange={handleSliderChange}
                     />
@@ -429,4 +382,25 @@ export const ReactBtcPayButton = ({
             </form>
         </>
     );
+
+    // OPTIONAL: Run 'npm install prop-types' then import PropTypes from 'prop-types';
+    // ReactBtcPayButton.propTypes = {
+    //     currency: PropTypes.string,
+    //     currencyOptions: PropTypes.arrayOf(PropTypes.string),
+    //     defaultPaymentMethod: PropTypes.string,
+    //     checkoutDesc: PropTypes.string,
+    //     orderId: PropTypes.string,
+    //     serverIpn: PropTypes.string,
+    //     notifyEmail: PropTypes.string,
+    //     browserRedirect: PropTypes.string,
+    //     submitBtnText: PropTypes.string
+    //     btcPayDomain: PropTypes.string,
+    //     storeId: PropTypes.string,
+    //     inputMin: PropTypes.number,
+    //     inputMax: PropTypes.number,
+    //     sliderMin: PropTypes.number,
+    //     sliderMax: PropTypes.number,
+    //     customStyles: PropTypes.string,
+    // };
+
 };
