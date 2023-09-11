@@ -19,7 +19,7 @@ The React BTCPay Server Pay Button is a highly customizable and easy-to-integrat
 
 ### Manual Installation
 
-1. Run `npm install react-btcpayserver-paybutton` to install the package into your React project.
+1. Run `npm install react-btcpay-paybutton` to install the package into your React project.
 2. Follow the steps below to add the `ReactBtcPayButton` component to your app.
 
 ## Quick Start
@@ -29,7 +29,7 @@ Here's how you can add the React BTCPay Server Pay Button to your application:
 ### Step 1: Import the Component
 
 ```jsx
-import { ReactBtcPayButton } from 'react-btcpayserver-paybutton';
+import { ReactBtcPayButton } from 'react-btcpay-paybutton';
 ```
 
 ### Step 2: Add Component to Your App
@@ -62,7 +62,7 @@ To integrate the React BTCPay Button into your application, simply include it in
 The `ReactBtcPayButton` component accepts various props that allow you to customize its behavior and appearance. Below are detailed explanations for each of these props:
 
 - **`currency`**:  
-  This specifies the default currency you would like to use for payments. The default value is `'SATS'`.
+  Specifies the default currency you would like to use for payments. The default value is `'SATS'`.
 
 - **`currencyOptions`**:  
   An array that defines the set of currencies that you can choose from. For example, you can set it to `['BTC', 'USD']` to enable Bitcoin and U.S. Dollar as options.
@@ -107,7 +107,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
   Specifies the maximum value for the payment slider.
 
 - **`customStyles`**:  
-  This prop allows you to inject custom CSS styles directly into the component.
+  Allows you to inject custom CSS styles directly into the component.
 
 ## Documentation
 
