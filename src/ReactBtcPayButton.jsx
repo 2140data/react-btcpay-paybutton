@@ -2,7 +2,7 @@
 
 // Import necessary modules from React and the stylesheet
 import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
+// OPTIONAL: import PropTypes from 'prop-types';
 
 // Define the ReactBtcPayButton component
 export const ReactBtcPayButton = ({
@@ -20,11 +20,13 @@ export const ReactBtcPayButton = ({
     submitBtnText = '',
     btcPayDomain = '',
     storeId = '',
+    mode = '',
     inputMin = 1,
     inputMax = 21000000000000,
+    customMax = 21000000000000,
     sliderMin = 1,
     sliderMax = 250000,
-    customStyles = ''
+    customStyles = '',
 }) => {
 
     // Adjust custom CSS styles
@@ -53,6 +55,9 @@ export const ReactBtcPayButton = ({
     
     .btcpay-form .btcpay-custom-container {
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap:0.5rem;
     }
     
     .btcpay-custom {
@@ -60,11 +65,17 @@ export const ReactBtcPayButton = ({
         flex-direction: column;
         gap: 0.5rem;
     }
+
+    .btcpay-custom--horizontal {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+    }
     
     .btcpay-input-price,
     .btcpay-input-range,
     select {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0rem;
     }
     
     .btcpay-form .plus-minus {
@@ -120,9 +131,13 @@ export const ReactBtcPayButton = ({
         color: #000;
     }
     
+    .btcpay-input-price--custom {
+        width: 140px;
+        max-width: 100%;
+    }
+
     .btcpay-input-price::selection {
         background-color: lightblue;
-        /* Replace with the desired light orange color */
     }
     
     .btcpay-input-price::-webkit-outer-spin-button,
@@ -137,6 +152,7 @@ export const ReactBtcPayButton = ({
         appearance: none;
         width: 100%;
         background: transparent;
+        margin-top:10px;
     }
     
     input[type=range].btcpay-input-range:focus {
@@ -273,19 +289,38 @@ export const ReactBtcPayButton = ({
 
     // Function to handle changes in the slider
     const handleSliderChange = (e) => {
-        const sanitizedValue = parseInt(e.target.value, 10);
-        if (!isNaN(sanitizedValue) && sanitizedValue >= sliderMin && sanitizedValue <= sliderMax) {
-            setPrice(sanitizedValue);
+        const scrubbedValue = parseInt(e.target.value, 10);
+        if (!isNaN(scrubbedValue) && scrubbedValue >= sliderMin && scrubbedValue <= sliderMax) {
+            setPrice(scrubbedValue);
         }
     };
 
     // Function to handle changes in the price input
     const handlePriceChange = (e) => {
-        let newPrice = parseInt(e.target.value.replace(/,/g, ''), 10);
-        if (!isNaN(newPrice) && newPrice >= inputMin && newPrice <= inputMax) {
+        let newValue = e.target.value.replace(/,/g, '');
+        let newPrice = parseInt(newValue, 10);
+
+        // If the value is empty or NaN, default to '0'
+        if (newValue === '' || isNaN(newPrice)) {
+            setPrice(0);
+            return;
+        }
+
+        if (newPrice >= inputMin && newPrice <= inputMax) {
             setPrice(newPrice);
         }
     };
+
+    // Function to increment or decrement price
+    const handlePlusMinus = (type, step, min, max) => {
+        const parsedPrice = parseInt(price, 10);
+        const newPrice = type === '-' ? Math.max(parsedPrice - step, min) : Math.min(parsedPrice + step, max);
+        setPrice(newPrice);
+    };
+
+    // Wrapper functions to use with increment/decrement onClick
+    const handleIncrement = () => handlePlusMinus('+', 1, 1, customMax);
+    const handleDecrement = () => handlePlusMinus('-', 1, 1, customMax);
 
     // Function to format the price with commas
     const formatPrice = (price) => {
@@ -328,23 +363,82 @@ export const ReactBtcPayButton = ({
             <style>
                 {dynamicStyles}
             </style>
+
             <form
                 className="btcpay-form btcpay-form--block"
                 method="POST"
                 action={`https://${btcPayDomain}/api/v1/invoices`}
                 onSubmit={handleFormSubmit}
             >
-                {/* Customizable fields for price and currency */}
-                <div className="btcpay-custom">
-                    <input
-                        className="btcpay-input-price"
-                        type="text"
-                        name="price"
-                        min={inputMin}
-                        max={inputMax}
-                        value={formatPrice(price)}
-                        onChange={handlePriceChange}
-                    />
+                {/* Container for price and currency inputs */}
+                <div className="btcpay-custom-container">
+
+                    {/* 'Fixed' mode */}
+                    {mode.toLowerCase() === 'fixed' && (
+                        <div className="btcpay-custom">
+                            <input
+                                className="btcpay-input-price"
+                                type="text"
+                                name="price"
+                                min={inputMin}
+                                max={inputMax}
+                                value={formatPrice(price)}
+                                onChange={handlePriceChange}
+                            />
+                        </div>
+                    )}
+
+                    {/* 'Custom' mode */}
+                    {mode.toLowerCase() === 'custom' && (
+                        <div className={`btcpay-custom ${mode.toLowerCase() === 'custom' ? 'btcpay-custom--horizontal' : ''}`}>
+                            <button
+                                className="plus-minus"
+                                type="button"
+                                onClick={handleDecrement}
+                            >
+                                -
+                            </button>
+                            <input
+                                className={`btcpay-input-price ${mode.toLowerCase() === 'custom' ? 'btcpay-input-price--custom' : ''}`}
+                                type="text"
+                                name="price"
+                                value={formatPrice(price)}
+                                onChange={handlePriceChange}
+                            />
+                            <button
+                                className="plus-minus"
+                                type="button"
+                                onClick={handleIncrement}
+                            >
+                                +
+                            </button>
+                        </div>
+                    )}
+
+                    {/* 'Slider' mode */}
+                    {mode.toLowerCase() === 'slider' && (
+                        <div className="btcpay-custom">
+                            <input
+                                className="btcpay-input-price"
+                                type="text"
+                                name="price"
+                                min={inputMin}
+                                max={inputMax}
+                                value={formatPrice(price)}
+                                onChange={handlePriceChange}
+                            />
+                            <input
+                                className="btcpay-input-range"
+                                type="range"
+                                min={sliderMin}
+                                max={sliderMax}
+                                value={price}
+                                onChange={handleSliderChange}
+                            />
+                        </div>
+                    )}
+
+                    {/* Currency dropdown */}
                     <select name="currency" value={currency} onChange={(e) => setCurrency(e.target.value)}>
                         {currencyOptions.map((curr) => (
                             <option key={curr} value={curr}>{curr}</option>
@@ -364,15 +458,6 @@ export const ReactBtcPayButton = ({
                     <input type="hidden" name="browserRedirect" value={browserRedirect} />
                     <input type="hidden" name="checkoutQueryString" value={checkoutQueryString} />
 
-                    {/* Slider for adjusting price */}
-                    <input
-                        className="btcpay-input-range"
-                        type="range"
-                        min={sliderMin}
-                        max={sliderMax}
-                        value={price}
-                        onChange={handleSliderChange}
-                    />
                 </div>
 
                 {/* Submit button */}

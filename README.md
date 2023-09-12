@@ -8,7 +8,7 @@ The React BTCPay Server Pay Button is a highly customizable and easy-to-integrat
 
 - **Easy Setup**: Just 3 easy steps to add the button to your React app.
 - **Highly Customizable**: Modify button text, currency options, and more.
-- **Secure**: All transactions are processed through *YOUR* BTCPay Server.
+- **Secure**: All transactions are processed through your BTCPay Server.
 
 ## Requirements
 
@@ -49,6 +49,7 @@ To integrate the React BTCPay Button into your application, simply include it in
   submitBtnText='Request Invoice' // Submit button text
   btcPayDomain='yourserver.com' // BTCPay Server Domain (example: yourserver.com)
   storeId='yourstoreid' // Store ID
+  mode='Custom' // Options: 'Fixed', 'Custom', 'Slider'
   inputMin={1} // Input field minimum
   inputMax={21000000000000} // Input field maximum
   sliderMin={1} // Slider minimum
@@ -93,6 +94,9 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 
 - **`storeId`**:  
   The ID of your store on the BTCPay Server. Replace this with your specific store ID.
+
+- **`mode`**:  
+  The display mode of the BTCPay form. Select: 'Fixed', 'Custom', or 'Slider'.
 
 - **`inputMin`**:  
   Specifies the minimum amount that can be entered in the input field.
