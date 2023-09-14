@@ -8,25 +8,26 @@ import React, { useState, useEffect } from 'react';
 export const ReactBtcPayButton = ({
     // Default settings that can be overridden when using this component
     jsonResponse = true,
-    currency: currencyProp = '',
+    currency: currencyProp = 'SATS',
     currencyOptions = ['SATS'],
-    defaultPaymentMethod = '',
+    defaultPaymentMethod = 'SATS',
     checkoutDesc = '',
     orderId = '',
     serverIpn = '',
     notifyEmail = '',
     browserRedirect = '',
     checkoutQueryString = '',
-    submitBtnText = '',
+    submitBtnText = 'Pay with ',
     btcPayDomain = '',
     storeId = '',
-    mode = '',
+    mode = 'Slider',
     inputMin = 1,
     inputMax = 21000000000000,
     customMax = 21000000000000,
     sliderMin = 1,
     sliderMax = 250000,
-    customStyles = '',
+    showImage = false,
+    imageSize = '57px', // Height. BTCPay Server defaults: '57px', '46px', or '40px'
 }) => {
     const [isSelectHover, setIsSelectHover] = useState(false);
     const [isSubmitButtonHover, setIsSubmitButtonHover] = useState(false);
@@ -120,7 +121,7 @@ export const ReactBtcPayButton = ({
         marginTop: '1rem',
         marginBottom: '2rem',
         minWidth: '168px',
-        minHeight: '46px',
+        minHeight: imageSize,
         borderRadius: '4px',
         backgroundColor: '#0f3b21',
         cursor: 'pointer',
@@ -131,6 +132,13 @@ export const ReactBtcPayButton = ({
         color: '#fff',
         fontSize: '16px',
     }
+
+    const imageStyles = {
+        height: imageSize,
+        display: 'inline-block',
+        padding: '5% 0 5% 5px',
+        verticalAlign: 'middle',
+    };
 
     // Default CSS styles
     const btcPayButtonStyles = `
@@ -233,9 +241,6 @@ export const ReactBtcPayButton = ({
         }
     `;
 
-    // Create a constant to hold any custom user CSS
-    const dynamicStyles = `${customStyles}`;
-
     // State variables to hold the price and currency
     const [price, setPrice] = useState(1);
     const [currency, setCurrency] = useState(currencyProp);
@@ -315,20 +320,30 @@ export const ReactBtcPayButton = ({
     // Load BTCPay script if it's not already loaded (Modal version)
     useEffect(() => {
         if (!window.btcpay) {
-            const script = document.createElement('script');
-            script.src = `https://${btcPayDomain}/modal/btcpay.js`;
-            document.getElementsByTagName('head')[0].appendChild(script);
+            // Check if script is already added
+            const existingScript = document.querySelector(`script[src="https://${btcPayDomain}/modal/btcpay.js"]`);
+            if (!existingScript) {
+                const script = document.createElement('script');
+                script.src = `https://${btcPayDomain}/modal/btcpay.js`;
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
         }
-    }, [btcPayDomain]);
+    }, [ btcPayDomain ]);
 
     // Inject styles into head
     useEffect(() => {
-        const styleTag = document.createElement('style');
-        styleTag.innerHTML = btcPayButtonStyles;
-        document.getElementsByTagName('head')[0].appendChild(styleTag);
-    }, []);
+        // Check if the style tag already exists
+        const existingStyle = document.querySelector('style[data-btcpay]');
+        if (!existingStyle) {
+            const styleTag = document.createElement('style');
+            styleTag.setAttribute('data-btcpay', ''); // add an attribute to mark this style tag
+            styleTag.innerHTML = btcPayButtonStyles;
+            document.getElementsByTagName('head')[0].appendChild(styleTag);
+        }
+    }, [ btcPayButtonStyles ]);
 
 
+    
     // The form that will be displayed
     return (
         <form
@@ -455,6 +470,13 @@ export const ReactBtcPayButton = ({
                 <span style={submitButtonTextStyles}>
                     {submitBtnText}
                 </span>
+                {showImage && (
+                    <img 
+                        src={`https://${btcPayDomain}/img/paybutton/logo.svg`}
+                        alt="BTCPay Logo"
+                        style={imageStyles}
+                    />
+                )}
             </button>
         </form>
     );
