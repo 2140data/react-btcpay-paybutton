@@ -111,6 +111,12 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 - **`sliderMax`**:  
   Specifies the maximum value for the payment slider.
 
+- **`showImage`**:  
+  Choose to show or hide the button image. Options: {true} or {false}
+
+- **`imageSize`**:  
+  Specifies the height for the button image. BTCPay defaults: 40px, 46px, 57px
+
 
 ## Documentation
 
