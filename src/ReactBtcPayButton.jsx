@@ -483,6 +483,7 @@ export const ReactBtcPayButton = ({
 
     // OPTIONAL: Run 'npm install prop-types' then import PropTypes from 'prop-types';
     // ReactBtcPayButton.propTypes = {
+    //     jsonResponse: PropTypes.bool,
     //     currency: PropTypes.string,
     //     currencyOptions: PropTypes.arrayOf(PropTypes.string),
     //     defaultPaymentMethod: PropTypes.string,
@@ -491,14 +492,18 @@ export const ReactBtcPayButton = ({
     //     serverIpn: PropTypes.string,
     //     notifyEmail: PropTypes.string,
     //     browserRedirect: PropTypes.string,
-    //     submitBtnText: PropTypes.string
+    //     checkoutQueryString: PropTypes.string,
+    //     submitBtnText: PropTypes.string,
     //     btcPayDomain: PropTypes.string,
     //     storeId: PropTypes.string,
+    //     mode: PropTypes.string,
     //     inputMin: PropTypes.number,
     //     inputMax: PropTypes.number,
+    //     customMax: PropTypes.number,
     //     sliderMin: PropTypes.number,
     //     sliderMax: PropTypes.number,
-    //     customStyles: PropTypes.string,
+    //     showImage: PropTypes.bool,
+    //     imageSize: PropTypes.string,
     // };
 
 };
