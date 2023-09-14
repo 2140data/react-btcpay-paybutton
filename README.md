@@ -49,12 +49,13 @@ To integrate the React BTCPay Button into your application, simply include it in
   submitBtnText='Request Invoice' // Submit button text
   btcPayDomain='yourserver.com' // BTCPay Server Domain (example: yourserver.com)
   storeId='yourstoreid' // Store ID
-  mode='Custom' // Options: 'Fixed', 'Custom', 'Slider'
+  mode='Fixed' // Options: 'Fixed', 'Custom', 'Slider'
   inputMin={1} // Input field minimum
   inputMax={21000000000000} // Input field maximum
   sliderMin={1} // Slider minimum
   sliderMax={250000} // Slider maximum
-  customStyles='' // Custom CSS styles ( example: .submit-btn { background-color: red; } )
+  showImage = {false} // Show the image in the button? {true} or {false}
+  imageSize = '57px' // Image height. BTCPay Server default options: '57px', '46px', or '40px'
 />
 ```
 
@@ -110,8 +111,6 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 - **`sliderMax`**:  
   Specifies the maximum value for the payment slider.
 
-- **`customStyles`**:  
-  Allows you to inject custom CSS styles directly into the component.
 
 ## Documentation
 
