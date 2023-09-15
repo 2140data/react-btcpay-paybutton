@@ -2,7 +2,8 @@
   "name": "react-btcpay-paybutton",
   "version": "1.0.0",
   "description": "Add a BTCPay Server Pay Button into your React app for BTC payments",
-  "main": "src/ReactBtcPayButton.jsx",
+  "main": "src/index.js",
+  "files": ["src/ReactBtcPayButton.jsx", "src/index.js"],
   "scripts": {
     "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },
