@@ -79,28 +79,28 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
   An array that defines the set of currencies that you can add to the dropdown. For example, you can set it to `['BTC', 'USD']` to enable Bitcoin and U.S. Dollar as options. This is a required field.
 
 - **`defaultPaymentMethod`**:  
-  Specifies the payment method that should be pre-selected when the component loads. For example, setting this to `'SATS'` would make Lightning Network the initially selected payment method.
+  Specifies the payment method that should be pre-selected when the component loads. For example, setting this to `'SATS'` would make Lightning Network the initially selected payment method. This is a required field.
 
 - **`mode`**:  
-  The display mode of the BTCPay form. Select: 'Fixed', 'Custom', or 'Slider'.
+  The display mode of the BTCPay form. Select: 'Fixed', 'Custom', or 'Slider'. This is a required field.
 
 - **`inputMin`**:  
-  Specifies the minimum amount that can be entered in the input field.
+  Specifies the minimum amount that can be entered in the input field. This is a required field.
 
 - **`inputMax`**:  
-  Specifies the maximum amount that can be entered in the input field.
+  Specifies the maximum amount that can be entered in the input field. This is a required field.
 
 - **`sliderMin`**:  
-  Specifies the minimum value for the payment slider.
+  Specifies the minimum value for the payment slider. This is a required field.
 
 - **`sliderMax`**:  
-  Specifies the maximum value for the payment slider.
+  Specifies the maximum value for the payment slider. This is a required field.
 
 - **`submitBtnText`**:  
-  The text displayed on the submit button. For example, setting this prop to `'Pay Now'` would change the button text to 'Pay Now'.
+  The text displayed on the submit button. For example, setting this prop to `'Pay Now'` would change the button text to 'Pay Now'. This is a required field.
 
 - **`showImage`**:  
-  Choose to show or hide the button image. Options: {true} or {false}
+  Choose to show or hide the button image. Options: {true} or {false} This is a required field.
 
 - **`imageSize`**:  
   Specifies the height for the button image (BTCPay Server logo). Defaults: 40px, 46px, 57px
