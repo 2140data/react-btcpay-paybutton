@@ -38,7 +38,7 @@ To integrate the React BTCPay Button into your application, simply include it in
 
 ```jsx
 <ReactBtcPayButton
-// REQUIRED
+  // REQUIRED
   btcPayDomain='yourserver.com' // BTCPay Server Domain (example: yourserver.com)
   storeId='yourstoreid' // BTCPay Server Store ID
   currency='SATS' // Default currency for dropdown 
@@ -52,12 +52,12 @@ To integrate the React BTCPay Button into your application, simply include it in
   submitBtnText='Pay with' // Submit button text
   showImage={false} // Show the BTCPay Server logo in the button? {true} or {false}
   // OPTIONAL
-  imageSize='57px' //  BTCPay Server logo height. Default options: '40px', '46px', or '57px'
-  checkoutDesc='Your Description Here' // Checkout description
-  orderId='Your Order ID' // Order ID
-  serverIpn='https://your-server-ipn.com' // Server IPN
-  notifyEmail='your-email@example.com' // Notifications email address
-  browserRedirect='https://your-redirect.com' // Browser redirect URL
+  imageSize='' //  BTCPay Server logo height. Default options: '40px', '46px', or '57px'
+  checkoutDesc='' // Checkout description. Example: 'Thank your for your payment!'
+  orderId='' // Order ID. Example: '0001'
+  serverIpn='' // Server IPN. Example: 'https://your-server-ipn.com'
+  notifyEmail='' // Notification email address. Example: 'your-email@example.com'
+  browserRedirect='' // Browser redirect URL. Example: 'https://your-redirect.com'
 />
 
 ```
@@ -105,7 +105,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 - **`imageSize`**:  
   Specifies the height for the button image (BTCPay Server logo). Defaults: 40px, 46px, 57px
 
-  - **`checkoutDesc`**:  
+- **`checkoutDesc`**:  
   The description that appears on the checkout invoice. You can use this field to describe the product or service you are offering.
 
 - **`orderId`**:  
