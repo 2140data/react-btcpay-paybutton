@@ -7,27 +7,26 @@ import React, { useState, useEffect } from 'react';
 // Define the ReactBtcPayButton component
 export const ReactBtcPayButton = ({
     // Default settings that can be overridden when using this component
-    jsonResponse = true,
-    currency: currencyProp = 'SATS',
-    currencyOptions = ['SATS'],
-    defaultPaymentMethod = 'SATS',
+    jsonResponse = true, // Required
+    btcPayDomain = '', // Required
+    storeId = '', // Required
+    currency: currencyProp = 'SATS', // Required
+    currencyOptions = ['SATS'], // Required
+    defaultPaymentMethod = 'SATS', // Required
+    mode = 'Slider', // Required
+    inputMin = 1, // Required
+    inputMax = 21000000000000, // Required
+    sliderMin = 1, // Required
+    sliderMax = 250000, // Required
+    submitBtnText = 'Pay with ', // Required
+    showImage = false, // Required
+    imageSize = '57px',
     checkoutDesc = '',
     orderId = '',
     serverIpn = '',
     notifyEmail = '',
     browserRedirect = '',
     checkoutQueryString = '',
-    submitBtnText = 'Pay with ',
-    btcPayDomain = '', // Required
-    storeId = '', // Required
-    mode = 'Slider',
-    inputMin = 1,
-    inputMax = 21000000000000,
-    customMax = 21000000000000,
-    sliderMin = 1,
-    sliderMax = 250000,
-    showImage = false,
-    imageSize = '57px',
 }) => {
     const [isSelectHover, setIsSelectHover] = useState(false);
     const [isSubmitButtonHover, setIsSubmitButtonHover] = useState(false);
@@ -277,8 +276,8 @@ export const ReactBtcPayButton = ({
     };
 
     // Wrapper functions to use with increment/decrement onClick
-    const handleIncrement = () => handlePlusMinus('+', 1, 1, customMax);
-    const handleDecrement = () => handlePlusMinus('-', 1, 1, customMax);
+    const handleIncrement = () => handlePlusMinus('+', 1, 1, inputMax);
+    const handleDecrement = () => handlePlusMinus('-', 1, 1, inputMax);
 
     // Handle hover on select element
     const handleSelectMouseEnter = () => {
@@ -499,7 +498,6 @@ export const ReactBtcPayButton = ({
     //     mode: PropTypes.string,
     //     inputMin: PropTypes.number,
     //     inputMax: PropTypes.number,
-    //     customMax: PropTypes.number,
     //     sliderMin: PropTypes.number,
     //     sliderMax: PropTypes.number,
     //     showImage: PropTypes.bool,
