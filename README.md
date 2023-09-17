@@ -58,6 +58,14 @@ To integrate the React BTCPay Button into your application, simply include it in
   serverIpn='' // Server IPN. Example: 'https://your-server-ipn.com'
   notifyEmail='' // Notification email address. Example: 'your-email@example.com'
   browserRedirect='' // Browser redirect URL. Example: 'https://your-redirect.com'
+  // OPTIONAL - Custom User Styles (Add as many comma-separated styles as needed)
+  formStyles = {{ flexDirection: 'column' }}
+  plusMinusButtonStyles = {{ cursor: 'pointer' }}
+  selectStyles = {{ fontSize: '11px' }}
+  amountInputStyles = {{ maxWidth: '100%' }}
+  rangeInputStyles = {{ maxWidth: '100%' }}
+  submitButtonStyles={{ backgroundColor: '#0f3b21', borderRadius: '4px', minWidth: '168px' }}
+  submitButtonTextStyles={{ fontSize: '16px', fontFamily: 'sans-serif' }}
 />
 
 ```
@@ -119,6 +127,26 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 
 - **`browserRedirect`**:  
   The URL to which the browser will be redirected after the payment process is completed or cancelled.
+
+- **`formStyles`**:  
+  Optional prop to override form styles. Add comma-separated CSS (JavaScript syntax) to override default styles.
+
+- **`plusMinusButtonStyles`**:  
+  Optional prop to override plus/minus button styles. Add comma-separated CSS (JavaScript syntax) to override default styles.
+
+- **`amountInputStyles`**:  
+  Optional prop to override input field styles. Add comma-separated CSS (JavaScript syntax) to override default styles.
+
+- **`rangeInputStyles`**:  
+  Optional prop to override slider styles. Add comma-separated CSS (JavaScript syntax) to override default styles.
+
+- **`submitButtonStyles`**:  
+  Optional prop to override button styles. Add comma-separated CSS (JavaScript syntax) to override default styles.
+
+- **`submitButtonTextStyles`**:  
+  Optional prop to override button text styles. Add comma-separated CSS (JavaScript syntax) to override default styles.
+
+
 
 ## Documentation
 

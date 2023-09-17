@@ -27,6 +27,15 @@ export const ReactBtcPayButton = ({
     notifyEmail = '',
     browserRedirect = '',
     checkoutQueryString = '',
+    // Custom User Styles
+    formStyles: customFormStyles = {},
+    plusMinusButtonStyles: customPlusMinusButtonStyles = {},
+    selectStyles: customSelectStyles = {},
+    amountInputStyles: customAmountInputStyles = {},
+    rangeInputStyles: customRangeInputStyles = {},
+    submitButtonStyles: customSubmitButtonStyles = {},
+    submitButtonTextStyles: customSubmitButtonTextStyles = {},
+    imageStyles: customImageStyles = {},
 }) => {
     const [isSelectHover, setIsSelectHover] = useState(false);
     const [isSubmitButtonHover, setIsSubmitButtonHover] = useState(false);
@@ -36,6 +45,7 @@ export const ReactBtcPayButton = ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        ...customFormStyles,
     }
 
     const containerStyles = {
@@ -63,6 +73,7 @@ export const ReactBtcPayButton = ({
         margin: 'auto 5px',
         display: 'inline-flex',
         justifyContent: 'center',
+        ...customPlusMinusButtonStyles,
     }
 
     const selectStyles = {
@@ -80,6 +91,7 @@ export const ReactBtcPayButton = ({
         marginBottom: '10px',
         fontSize: '11px',
         cursor: 'pointer',
+        ...customSelectStyles,
     }
 
     const selectOptionStyles = {
@@ -103,6 +115,7 @@ export const ReactBtcPayButton = ({
         color: '#000',
         width: mode.toLowerCase() === 'custom' ? '140px' : undefined,
         maxWidth: mode.toLowerCase() === 'custom' ? '100%' : undefined,
+        ...customAmountInputStyles,
     }
 
     const rangeInputStyles = {
@@ -114,6 +127,7 @@ export const ReactBtcPayButton = ({
         marginTop: '10px',
         marginBottom: 0,
         outline: 0,
+        ...customRangeInputStyles,
     }
 
     const submitButtonStyles = {
@@ -125,11 +139,13 @@ export const ReactBtcPayButton = ({
         backgroundColor: '#0f3b21',
         cursor: 'pointer',
         border: isSubmitButtonHover ? '2px solid #cedc21' : '2px solid transparent',
+        ...customSubmitButtonStyles,
     }
 
     const submitButtonTextStyles = {
         color: '#fff',
         fontSize: '16px',
+        ...customSubmitButtonTextStyles,
     }
 
     const imageStyles = {
@@ -137,6 +153,7 @@ export const ReactBtcPayButton = ({
         display: 'inline-block',
         padding: '5% 0 5% 5px',
         verticalAlign: 'middle',
+        ...customImageStyles,
     };
 
     // Default CSS styles
