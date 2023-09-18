@@ -153,7 +153,7 @@ For more detailed information and advanced customization options, please refer t
 
 ## Contributing
 
-Feel free to report issues, suggest features, and submit pull requests.
+Feel free to report issues, suggest features, and submit pull requests. See [CONTRIBUTING.md](https://github.com/2140data/react-btcpay-paybutton/blob/main/CONTRIBUTING.md) for details.
 
 ## Acknowledgements
 
