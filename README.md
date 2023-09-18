@@ -34,38 +34,13 @@ import { ReactBtcPayButton } from 'react-btcpay-paybutton';
 
 ### Step 2: Add Component to Your App
 
-To integrate the React BTCPay Button into your application, simply include it in your JSX as shown below (with optional settings):
+To integrate the React BTCPay Button into your application, simply include it in your JSX (displayed below with minimum required settings):
 
 ```jsx
 <ReactBtcPayButton
-  // REQUIRED
-  btcPayDomain='yourserver.com' // BTCPay Server Domain (example: yourserver.com)
-  storeId='yourstoreid' // BTCPay Server Store ID
-  currency='SATS' // Default currency for dropdown 
-  currencyOptions={['SATS']} // Comma-separated values for dropdown: 'BTC', 'USD', 'EUR', etc.
-  defaultPaymentMethod='SATS' // Payment method to use: 'BTC', 'SATS'
-  mode='Fixed' // Form Options: 'Fixed', 'Custom', 'Slider'
-  inputMin={1} // Input field minimum (SATS)
-  inputMax={21000000000000} // Input field maximum (SATS)
-  sliderMin={1} // Slider minimum (SATS)
-  sliderMax={250000} // Slider maximum (SATS)
-  submitBtnText='Pay with' // Submit button text
-  showImage={false} // Show the BTCPay Server logo in the button? {true} or {false}
-  // OPTIONAL
-  imageSize='' //  BTCPay Server logo height. Default options: '40px', '46px', or '57px'
-  checkoutDesc='' // Checkout description. Example: 'Thank your for your payment!'
-  orderId='' // Order ID. Example: '0001'
-  serverIpn='' // Server IPN. Example: 'https://your-server-ipn.com'
-  notifyEmail='' // Notification email address. Example: 'your-email@example.com'
-  browserRedirect='' // Browser redirect URL. Example: 'https://your-redirect.com'
-  // OPTIONAL - Custom User Styles (Add as many comma-separated styles as needed)
-  formStyles = {{ flexDirection: 'column' }}
-  plusMinusButtonStyles = {{ cursor: 'pointer' }}
-  selectStyles = {{ fontSize: '11px' }}
-  amountInputStyles = {{ maxWidth: '100%' }}
-  rangeInputStyles = {{ maxWidth: '100%' }}
-  submitButtonStyles={{ backgroundColor: '#0f3b21', borderRadius: '4px', minWidth: '168px' }}
-  submitButtonTextStyles={{ fontSize: '16px', fontFamily: 'sans-serif' }}
+  btcPayDomain="AddYourServer.com"
+  storeId="AddYourStoreID"
+  // Additional options as needed
 />
 
 ```
@@ -74,8 +49,6 @@ To integrate the React BTCPay Button into your application, simply include it in
 
 The `ReactBtcPayButton` component accepts various props that allow you to customize its behavior and appearance. Below are detailed explanations for each of these props:
 
-#### Required Props
-
 | Prop                 | Type     | Description                                                                 | Default Value        | Available Options    |
 |----------------------|----------|-----------------------------------------------------------------------------|----------------------|----------------------|
 | `btcPayDomain`       | `string` | The domain where your BTCPay Server is hosted.                            | N/A                  | N/A                  |
@@ -83,18 +56,13 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 | `currency`           | `string` | Specifies the default currency for payments.                              | `'SATS'`             | `'SATS', 'BTC', 'USD'`|
 | `currencyOptions`    | `array`  | Defines the set of currencies for the dropdown.                           | `['SATS']`           | N/A                  |
 | `defaultPaymentMethod`| `string` | Specifies the initially selected payment method.                          | `'SATS'`             | `'SATS', 'BTC'`      |
-| `mode`               | `string` | The display mode of the BTCPay form.                                      | `'Fixed'`            | `'Fixed', 'Slider'`  |
+| `mode`               | `string` | The display mode of the BTCPay form.                                      | `'Fixed'`            | `'Fixed', 'Slider', 'Custom'`  |
 | `inputMin`           | `number` | Specifies the minimum amount for the input field.                         | `1`                  | N/A                  |
 | `inputMax`           | `number` | Specifies the maximum amount for the input field.                         | `21000000000000`     | N/A                  |
 | `sliderMin`          | `number` | Specifies the minimum value for the payment slider.                       | `1`                  | N/A                  |
 | `sliderMax`          | `number` | Specifies the maximum value for the payment slider.                       | `250000`             | N/A                  |
 | `submitBtnText`      | `string` | The text displayed on the submit button.                                  | `'Pay with'`         | N/A                  |
 | `showImage`          | `boolean`| Choose to show or hide the button image.                                  | `false`              | `true`, `false`      |
-
-#### Optional Props
-
-| Prop                 | Type     | Description                                                                 | Default Value        | Available Options    |
-|----------------------|----------|-----------------------------------------------------------------------------|----------------------|----------------------|
 | `imageSize`          | `string` | Specifies the height for the button image.                                | `''`                 | N/A                  |
 | `checkoutDesc`       | `string` | Description that appears on the checkout invoice.                         | `''`                 | N/A                  |
 | `orderId`            | `string` | An identifier for the order.                                                 | `''`                 | N/A                  |
@@ -109,7 +77,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 | `submitButtonTextStyles`| `object`| Override button text styles.                                                | `{}`                 | N/A                  |
 
 
-#### More Information
+#### Props, Explained
 - **`btcPayDomain`**:  
   The domain where your BTCPay Server is hosted. Replace this with your BTCPay Server domain. This is a required field.
 
@@ -181,6 +149,44 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 
 - **`submitButtonTextStyles`**:  
   Optional prop to override button text styles. Add comma-separated CSS (JavaScript syntax) to override default styles.
+
+### Example: Advanced Usage
+
+An advanced example with all available options is shown below:
+
+```jsx
+<ReactBtcPayButton
+  // REQUIRED
+  btcPayDomain='yourserver.com' // BTCPay Server Domain (example: yourserver.com)
+  storeId='yourstoreid' // BTCPay Server Store ID
+  currency='SATS' // Default currency for dropdown 
+  currencyOptions={['SATS']} // Comma-separated values for dropdown: 'BTC', 'USD', 'EUR', etc.
+  defaultPaymentMethod='SATS' // Payment method to use: 'BTC', 'SATS'
+  mode='Fixed' // Form Options: 'Fixed', 'Custom', 'Slider'
+  inputMin={1} // Input field minimum (SATS)
+  inputMax={21000000000000} // Input field maximum (SATS)
+  sliderMin={1} // Slider minimum (SATS)
+  sliderMax={250000} // Slider maximum (SATS)
+  submitBtnText='Pay with' // Submit button text
+  showImage={false} // Show the BTCPay Server logo in the button? {true} or {false}
+  // OPTIONAL
+  imageSize='' //  BTCPay Server logo height. Default options: '40px', '46px', or '57px'
+  checkoutDesc='' // Checkout description. Example: 'Thank your for your payment!'
+  orderId='' // Order ID. Example: '0001'
+  serverIpn='' // Server IPN. Example: 'https://your-server-ipn.com'
+  notifyEmail='' // Notification email address. Example: 'your-email@example.com'
+  browserRedirect='' // Browser redirect URL. Example: 'https://your-redirect.com'
+  // OPTIONAL - Custom User Styles (Add as many comma-separated styles as needed)
+  formStyles = {{ flexDirection: 'column' }}
+  plusMinusButtonStyles = {{ cursor: 'pointer' }}
+  selectStyles = {{ fontSize: '11px' }}
+  amountInputStyles = {{ maxWidth: '100%' }}
+  rangeInputStyles = {{ maxWidth: '100%' }}
+  submitButtonStyles={{ backgroundColor: '#0f3b21', borderRadius: '4px', minWidth: '168px' }}
+  submitButtonTextStyles={{ fontSize: '16px', fontFamily: 'sans-serif' }}
+/>
+
+```
   
 ## Documentation
 
