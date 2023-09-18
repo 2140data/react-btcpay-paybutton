@@ -147,7 +147,6 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
   Optional prop to override button text styles. Add comma-separated CSS (JavaScript syntax) to override default styles.
 
 
-
 ## Documentation
 
 For more detailed information and advanced customization options, please refer to the [BTCPay Server Documentation](https://docs.btcpayserver.org/) and [React Documentation](https://legacy.reactjs.org/docs/getting-started.html).
