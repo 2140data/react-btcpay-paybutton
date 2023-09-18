@@ -74,6 +74,42 @@ To integrate the React BTCPay Button into your application, simply include it in
 
 The `ReactBtcPayButton` component accepts various props that allow you to customize its behavior and appearance. Below are detailed explanations for each of these props:
 
+#### Required Props
+
+| Prop                 | Type     | Description                                                                 | Default Value        | Available Options    |
+|----------------------|----------|-----------------------------------------------------------------------------|----------------------|----------------------|
+| `btcPayDomain`       | `string` | The domain where your BTCPay Server is hosted.                            | N/A                  | N/A                  |
+| `storeId`            | `string` | The ID of your store on the BTCPay Server.                                | N/A                  | N/A                  |
+| `currency`           | `string` | Specifies the default currency for payments.                              | `'SATS'`             | `'SATS', 'BTC', 'USD'`|
+| `currencyOptions`    | `array`  | Defines the set of currencies for the dropdown.                           | `['SATS']`           | N/A                  |
+| `defaultPaymentMethod`| `string` | Specifies the initially selected payment method.                          | `'SATS'`             | `'SATS', 'BTC'`      |
+| `mode`               | `string` | The display mode of the BTCPay form.                                      | `'Fixed'`            | `'Fixed', 'Slider'`  |
+| `inputMin`           | `number` | Specifies the minimum amount for the input field.                         | `1`                  | N/A                  |
+| `inputMax`           | `number` | Specifies the maximum amount for the input field.                         | `21000000000000`     | N/A                  |
+| `sliderMin`          | `number` | Specifies the minimum value for the payment slider.                       | `1`                  | N/A                  |
+| `sliderMax`          | `number` | Specifies the maximum value for the payment slider.                       | `250000`             | N/A                  |
+| `submitBtnText`      | `string` | The text displayed on the submit button.                                  | `'Pay with'`         | N/A                  |
+| `showImage`          | `boolean`| Choose to show or hide the button image.                                  | `false`              | `true`, `false`      |
+
+#### Optional Props
+
+| Prop                 | Type     | Description                                                                 | Default Value        | Available Options    |
+|----------------------|----------|-----------------------------------------------------------------------------|----------------------|----------------------|
+| `imageSize`          | `string` | Specifies the height for the button image.                                | `''`                 | N/A                  |
+| `checkoutDesc`       | `string` | Description that appears on the checkout invoice.                         | `''`                 | N/A                  |
+| `orderId`            | `string` | An identifier for the order.                                                 | `''`                 | N/A                  |
+| `serverIpn`          | `string` | The URL for Instant Payment Notifications (IPN).                          | `''`                 | N/A                  |
+| `notifyEmail`        | `string` | The email address for transaction notifications.                          | `''`                 | N/A                  |
+| `browserRedirect`    | `string` | The URL for browser redirection after payment.                            | `''`                 | N/A                  |
+| `formStyles`         | `object` | Override form styles.                                                        | `{}`                 | N/A                  |
+| `plusMinusButtonStyles`| `object`| Override plus/minus button styles.                                        | `{}`                 | N/A                  |
+| `amountInputStyles`  | `object` | Override input field styles.                                                 | `{}`                 | N/A                  |
+| `rangeInputStyles`   | `object` | Override slider styles.                                                      | `{}`                 | N/A                  |
+| `submitButtonStyles` | `object` | Override button styles.                                                      | `{}`                 | N/A                  |
+| `submitButtonTextStyles`| `object`| Override button text styles.                                                | `{}`                 | N/A                  |
+
+
+#### More Information
 - **`btcPayDomain`**:  
   The domain where your BTCPay Server is hosted. Replace this with your BTCPay Server domain. This is a required field.
 
@@ -145,8 +181,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 
 - **`submitButtonTextStyles`**:  
   Optional prop to override button text styles. Add comma-separated CSS (JavaScript syntax) to override default styles.
-
-
+  
 ## Documentation
 
 For more detailed information and advanced customization options, please refer to the [BTCPay Server Documentation](https://docs.btcpayserver.org/) and [React Documentation](https://legacy.reactjs.org/docs/getting-started.html).
