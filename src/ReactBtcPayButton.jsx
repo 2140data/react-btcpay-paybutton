@@ -28,9 +28,12 @@ export const ReactBtcPayButton = ({
     browserRedirect = '',
     checkoutQueryString = '',
     // Custom User Styles
+    outerContainerStyles: customOuterContainerStyles = {},
+    innerContainerStyles: customInnerContainerStyles = {},
     formStyles: customFormStyles = {},
     plusMinusButtonStyles: customPlusMinusButtonStyles = {},
     selectStyles: customSelectStyles = {},
+    selectOptionStyles: customSelectOptionStyles = {},
     amountInputStyles: customAmountInputStyles = {},
     rangeInputStyles: customRangeInputStyles = {},
     submitButtonStyles: customSubmitButtonStyles = {},
@@ -48,17 +51,19 @@ export const ReactBtcPayButton = ({
         ...customFormStyles,
     }
 
-    const containerStyles = {
+    const outerContainerStyles = {
         textAlign: 'center',
         display: 'flex',
         flexDirection: 'column',
         gap: '0.5rem',
+        ...customOuterContainerStyles,
     }
 
-    const customContainerStyles = {
+    const innerContainerStyles = {
         display: 'flex',
         flexDirection: mode.toLowerCase() === 'custom' ? 'row' : 'column',
         gap: '0.5rem',
+        ...customInnerContainerStyles,
     }
 
     const plusMinusButtonStyles = {
@@ -97,6 +102,7 @@ export const ReactBtcPayButton = ({
     const selectOptionStyles = {
         color: '#000',
         background: 'rgba(0, 0, 0, .1)',
+        ...customSelectOptionStyles,
     }
 
     const amountInputStyles = {
@@ -344,7 +350,7 @@ export const ReactBtcPayButton = ({
                 document.getElementsByTagName('head')[0].appendChild(script);
             }
         }
-    }, [ btcPayDomain ]);
+    }, [btcPayDomain]);
 
     // Inject styles into head
     useEffect(() => {
@@ -356,10 +362,10 @@ export const ReactBtcPayButton = ({
             styleTag.innerHTML = btcPayButtonStyles;
             document.getElementsByTagName('head')[0].appendChild(styleTag);
         }
-    }, [ btcPayButtonStyles ]);
+    }, [btcPayButtonStyles]);
 
 
-    
+
     // The form that will be displayed
     return (
         <form
@@ -369,11 +375,11 @@ export const ReactBtcPayButton = ({
             style={formStyles}
         >
             {/* Container for price and currency inputs */}
-            <div style={containerStyles}>
+            <div style={outerContainerStyles}>
 
                 {/* 'Fixed' mode */}
                 {mode.toLowerCase() === 'fixed' && (
-                    <div style={customContainerStyles}>
+                    <div style={innerContainerStyles}>
                         <input
                             style={amountInputStyles}
                             className="btcpay-input-price"
@@ -389,7 +395,7 @@ export const ReactBtcPayButton = ({
 
                 {/* 'Custom' mode */}
                 {mode.toLowerCase() === 'custom' && (
-                    <div style={customContainerStyles}>
+                    <div style={innerContainerStyles}>
                         <button
                             style={plusMinusButtonStyles}
                             type="button"
@@ -417,7 +423,7 @@ export const ReactBtcPayButton = ({
 
                 {/* 'Slider' mode */}
                 {mode.toLowerCase() === 'slider' && (
-                    <div style={customContainerStyles}>
+                    <div style={innerContainerStyles}>
                         <input
                             style={amountInputStyles}
                             className="btcpay-input-price"
@@ -487,7 +493,7 @@ export const ReactBtcPayButton = ({
                     {submitBtnText}
                 </span>
                 {showImage && (
-                    <img 
+                    <img
                         src={`https://${btcPayDomain}/img/paybutton/logo.svg`}
                         alt="BTCPay Logo"
                         style={imageStyles}
