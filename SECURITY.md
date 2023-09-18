@@ -19,4 +19,4 @@ We take security very seriously. If you discover any issue regarding security, p
 2. Your email will be acknowledged within 24 hours, and you’ll receive a detailed response within 48 hours indicating the next steps in handling your report.
 3. After the initial reply to your report, the security team will endeavor to keep you informed of the progress being made towards a fix and announcement.
 
-Thank you for responsibly disclosing any security vulnerabilities!
+Thank you for responsibly disclosing any security vulnerabilities.
