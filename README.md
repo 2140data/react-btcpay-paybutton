@@ -76,7 +76,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 | `submitButtonStyles` | `object` | Override button styles.                                                      | `{}`                 | N/A                  |
 | `submitButtonTextStyles`| `object`| Override button text styles.                                                 | `{}`                 | N/A                  |
 
-#### Props Explained
+#### Props, Explained
 
 ##### `amountInputStyles`
 - **Type**: Object (CSS in JavaScript syntax)
@@ -138,7 +138,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 - **Type**: Object (CSS in JavaScript syntax)
 - **Optional**: Yes
 - **Description**: 
-  Allows you to customize the styles for the form. For example, `{ flexDirection: 'column' }`.
+  Allows you to customize the form styles. For example, `{flexDirection: 'column'}`.
 
 ---
 
