@@ -80,8 +80,6 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 | `rangeInputStyles`   | `object` | Override slider styles. See default styles below.                       | `{}`                 | Listed below         |
 | `submitButtonStyles` | `object` | Override button styles. See default styles below.                       | `{}`                 | Listed below         |
 | `submitButtonTextStyles`| `object`| Override button text styles. See default styles below.                | `{}`                 | Listed below         |
-
----
   
 ## How to Use ReactBtcPayButton Props
 
@@ -361,7 +359,7 @@ Advanced Usage example showing all available options:
   
 ## Documentation
 
-For more information and advanced customization options, please refer to the [BTCPay Server Documentation](https://docs.btcpayserver.org/) and [React Documentation](https://legacy.reactjs.org/docs/getting-started.html).
+For more information about BTCPay Server or React, please refer to the [BTCPay Server Documentation](https://docs.btcpayserver.org/) and [React Documentation](https://legacy.reactjs.org/docs/getting-started.html).
 
 ## Contributing
 
