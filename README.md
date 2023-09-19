@@ -12,7 +12,7 @@ The React BTCPay Server Pay Button offers a seamless and highly configurable sol
 
 ## Requirements
 
-- **BTCPay Server**: You must have access to a BTCPay Server, either self-hosted or through a third-party in order to handle payments.
+- **BTCPay Server**: You must have access to a BTCPay Server, either self-hosted or through a third-party.
 - **React Application**: This component is intended to be used within an existing React application.
 
 ## Installation
@@ -74,12 +74,12 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 
 | Prop                 | Type     | Description                                                                 | Default Value        | Available Options    |
 |----------------------|----------|-----------------------------------------------------------------------------|----------------------|----------------------|
-| `amountInputStyles`  | `object` | Override input field styles. See all default styles below.                  | `{}`                 | Listed below         |
-| `formStyles`         | `object` | Override form styles. See all default styles below.                         | `{}`                 | Listed below         |
-| `plusMinusButtonStyles`| `object`| Override plus/minus button styles. See all default styles below.           | `{}`                 | Listed below         |
-| `rangeInputStyles`   | `object` | Override slider styles. See all default styles below.                       | `{}`                 | Listed below         |
-| `submitButtonStyles` | `object` | Override button styles. See all default styles below.                       | `{}`                 | Listed below         |
-| `submitButtonTextStyles`| `object`| Override button text styles. See all default styles below.                | `{}`                 | Listed below         |
+| `amountInputStyles`  | `object` | Override input field styles. See default styles below.                  | `{}`                 | Listed below         |
+| `formStyles`         | `object` | Override form styles. See default styles below.                         | `{}`                 | Listed below         |
+| `plusMinusButtonStyles`| `object`| Override plus/minus button styles. See default styles below.           | `{}`                 | Listed below         |
+| `rangeInputStyles`   | `object` | Override slider styles. See default styles below.                       | `{}`                 | Listed below         |
+| `submitButtonStyles` | `object` | Override button styles. See default styles below.                       | `{}`                 | Listed below         |
+| `submitButtonTextStyles`| `object`| Override button text styles. See default styles below.                | `{}`                 | Listed below         |
 
 ---
   
@@ -361,7 +361,7 @@ Advanced Usage example showing all available options:
   
 ## Documentation
 
-For more detailed information and advanced customization options, please refer to the [BTCPay Server Documentation](https://docs.btcpayserver.org/) and [React Documentation](https://legacy.reactjs.org/docs/getting-started.html).
+For more information and advanced customization options, please refer to the [BTCPay Server Documentation](https://docs.btcpayserver.org/) and [React Documentation](https://legacy.reactjs.org/docs/getting-started.html).
 
 ## Contributing
 
