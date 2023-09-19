@@ -2,13 +2,13 @@
 
 ## Overview
 
-The React BTCPay Server Pay Button is a highly customizable and easy-to-integrate component that allows you to add a BTCPay Server Pay Button to your React application. With just a few lines of code, you can enable Bitcoin payments right within your React app.
+The React BTCPay Server Pay Button offers a seamless and highly configurable solution for integrating BTCPay Server functionality into your React application. Enable Bitcoin payment processing in your app with just three simple steps.
 
 ## Features
 
 - **Easy Setup**: Just 3 easy steps to add the button to your React app.
-- **Highly Customizable**: Modify button text, currency options, and more.
-- **Secure**: All transactions are processed through your BTCPay Server.
+- **Highly Customizable**: Modify button text, currency options, colors and more.
+- **Private**: All transactions are processed through your BTCPay Server.
 
 ## Requirements
 
@@ -16,8 +16,6 @@ The React BTCPay Server Pay Button is a highly customizable and easy-to-integrat
 - **React Application**: This component is intended to be used within an existing React application.
 
 ## Installation
-
-### Manual Installation
 
 1. Run `npm install react-btcpay-paybutton` to install the package into your React project.
 2. Follow the steps below to add the `ReactBtcPayButton` component to your app.
@@ -38,9 +36,9 @@ To integrate the React BTCPay Button into your application, simply include it in
 
 ```jsx
 <ReactBtcPayButton
-  btcPayDomain="AddYourServer.com"
-  storeId="AddYourStoreID"
-  // Additional options as needed
+  btcPayDomain="YourServer.com" // Your BTCPay Server URL
+  storeId="YourStoreID" // Your BTCPay Server Store ID
+  // Additional options as needed (see Step 3 below)
 />
 
 ```
@@ -49,258 +47,314 @@ To integrate the React BTCPay Button into your application, simply include it in
 
 The `ReactBtcPayButton` component accepts various props that allow you to customize its behavior and appearance. Below are detailed explanations for each of these props:
 
+#### General Props
+
 | Prop                 | Type     | Description                                                                 | Default Value        | Available Options    |
 |----------------------|----------|-----------------------------------------------------------------------------|----------------------|----------------------|
-| `amountInputStyles`  | `object` | Override input field styles.                                                 | `{}`                 | N/A                  |
-| `browserRedirect`    | `string` | The URL for browser redirection after payment.                               | `''`                 | N/A                  |
-| `btcPayDomain`       | `string` | The domain where your BTCPay Server is hosted.                               | N/A                  | N/A                  |
-| `checkoutDesc`       | `string` | Description that appears on the checkout invoice.                            | `''`                 | N/A                  |
-| `currency`           | `string` | Specifies the default currency for payments.                                 | `'SATS'`             | `'SATS', 'BTC', 'USD'`|
-| `currencyOptions`    | `array`  | Defines the set of currencies for the dropdown.                              | `['SATS']`           | N/A                  |
-| `defaultPaymentMethod`| `string` | Specifies the initially selected payment method.                             | `'SATS'`             | `'SATS', 'BTC'`      |
-| `formStyles`         | `object` | Override form styles.                                                        | `{}`                 | N/A                  |
-| `imageSize`          | `string` | Specifies the height for the button image.                                   | `''`                 | N/A                  |
-| `inputMax`           | `number` | Specifies the maximum amount for the input field.                            | `21000000000000`     | N/A                  |
-| `inputMin`           | `number` | Specifies the minimum amount for the input field.                            | `1`                  | N/A                  |
-| `mode`               | `string` | The display mode of the BTCPay form.                                         | `'Fixed'`            | `'Fixed', 'Slider', 'Custom'`  |
-| `notifyEmail`        | `string` | The email address for transaction notifications.                             | `''`                 | N/A                  |
-| `orderId`            | `string` | An identifier for the order.                                                 | `''`                 | N/A                  |
-| `plusMinusButtonStyles`| `object`| Override plus/minus button styles.                                           | `{}`                 | N/A                  |
-| `rangeInputStyles`   | `object` | Override slider styles.                                                      | `{}`                 | N/A                  |
-| `serverIpn`          | `string` | The URL for Instant Payment Notifications (IPN).                             | `''`                 | N/A                  |
-| `showImage`          | `boolean`| Choose to show or hide the button image.                                     | `false`              | `true`, `false`      |
-| `sliderMax`          | `number` | Specifies the maximum value for the payment slider.                          | `250000`             | N/A                  |
-| `sliderMin`          | `number` | Specifies the minimum value for the payment slider.                          | `1`                  | N/A                  |
-| `storeId`            | `string` | The ID of your store on the BTCPay Server.                                   | N/A                  | N/A                  |
-| `submitBtnText`      | `string` | The text displayed on the submit button.                                     | `'Pay with'`         | N/A                  |
-| `submitButtonStyles` | `object` | Override button styles.                                                      | `{}`                 | N/A                  |
-| `submitButtonTextStyles`| `object`| Override button text styles.                                                 | `{}`                 | N/A                  |
+| `browserRedirect`    | `string` | The URL for browser redirection after payment.                               | `''`                | Add a URL            |
+| `btcPayDomain`       | `string` | REQUIRED. The domain where your BTCPay Server is hosted.                     | `''`                | Add a URL            |
+| `checkoutDesc`       | `string` | Description that appears on the checkout invoice.                            | `''`                | Add a description    |
+| `currency`           | `string` | Specifies the default currency for payments.                                 | `'SATS'`            | `'SATS', 'BTC', 'USD', etc.`   |
+| `currencyOptions`    | `array`  | Defines the set of currencies for the dropdown.                              | `['SATS']`          | `['SATS', 'BTC', 'USD', etc.]` |
+| `defaultPaymentMethod`| `string` | Specifies the initially selected payment method.                             | `'SATS'`           | `'SATS', 'BTC'`      |
+| `imageSize`          | `string` | Specifies the height for the button image.                                   | `''`                | `'40px', '46px', '57px'`   |
+| `inputMax`           | `number` | Specifies the maximum amount for the input field.                            | `21000000000000`    | Enter a number       |
+| `inputMin`           | `number` | Specifies the minimum amount for the input field.                            | `1`                 | Enter a number       |
+| `mode`               | `string` | The display mode of the BTCPay form.                                         | `'Slider'`           | `'Fixed', 'Slider', 'Custom'`  |
+| `notifyEmail`        | `string` | The email address for transaction notifications.                             | `''`                | Add an email address |
+| `orderId`            | `string` | An identifier for the order.                                                 | `''`                | Add an order number  |
+| `serverIpn`          | `string` | The URL for Instant Payment Notifications (IPN).                             | `''`                | Add a URL            |
+| `showImage`          | `boolean`| Choose to show or hide the button image.                                     | `false`             | `true`, `false`      |
+| `sliderMax`          | `number` | Specifies the maximum value for the payment slider.                          | `250000`            | Enter a number       |
+| `sliderMin`          | `number` | Specifies the minimum value for the payment slider.                          | `1`                 | Enter a number       |
+| `storeId`            | `string` | REQUIRED. The ID of your store on the BTCPay Server.                         | `''`                | Add a URL            |
+| `submitBtnText`      | `string` | The text displayed on the submit button.                                     | `'Pay with'`        | Add text             |
 
-#### Props, Explained
+#### Style Props
 
-##### `amountInputStyles`
-- **Type**: Object (CSS in JavaScript syntax)
-- **Optional**: Yes
-- **Description**: 
-  Allows you to customize the styles for the amount input field. You can add any valid CSS properties in JavaScript syntax, such as `{ maxWidth: '100%', color: 'red' }`.
+| Prop                 | Type     | Description                                                                 | Default Value        | Available Options    |
+|----------------------|----------|-----------------------------------------------------------------------------|----------------------|----------------------|
+| `amountInputStyles`  | `object` | Override input field styles. See all default styles below.                  | `{}`                 | Listed below         |
+| `formStyles`         | `object` | Override form styles. See all default styles below.                         | `{}`                 | Listed below         |
+| `plusMinusButtonStyles`| `object`| Override plus/minus button styles. See all default styles below.           | `{}`                 | Listed below         |
+| `rangeInputStyles`   | `object` | Override slider styles. See all default styles below.                       | `{}`                 | Listed below         |
+| `submitButtonStyles` | `object` | Override button styles. See all default styles below.                       | `{}`                 | Listed below         |
+| `submitButtonTextStyles`| `object`| Override button text styles. See all default styles below.                | `{}`                 | Listed below         |
 
 ---
+  
+## How to Use ReactBtcPayButton Props
 
-##### `browserRedirect`
+### General Props
+
+#### `browserRedirect`
 - **Type**: String (URL)
-- **Optional**: Yes
-- **Description**: 
-  Specifies the URL to which the user's browser will be redirected after the payment process is either completed or cancelled.
+- **Required**: No (Optional)
+- **Description**: Specifies the URL to which the user's browser will be redirected after the payment process is either completed or cancelled.
+- **Default**: None. You can add a URL.
 
----
-
-##### `btcPayDomain`
+#### `btcPayDomain` (Required)
 - **Type**: String
-- **Optional**: No (Required)
-- **Description**: 
-  The domain where your BTCPay Server is hosted. This is essential for connecting to your BTCPay Server.
+- **Required**: Yes
+- **Description**: REQUIRED. The domain where your BTCPay Server is hosted.
+- **Default**: None. You MUST add a URL.
 
----
-
-##### `checkoutDesc`
+#### `checkoutDesc`
 - **Type**: String
-- **Optional**: Yes
-- **Description**: 
-  Sets the description that appears on the checkout invoice. Useful for describing the product or service being offered.
+- **Required**: No (Optional)
+- **Description**: Sets the description that appears on the checkout invoice.
+- **Default**: None. You can add a message to the invoice.
 
----
-
-##### `currency`
+#### `currency`
 - **Type**: String
-- **Optional**: No (Required)
-- **Description**: 
-  Sets the default currency for payments. The default value is 'SATS'.
+- **Required**: No (Optional)
+- **Description**: Sets the default currency for payments.
+- **Default**: 'SATS'. Add currencies like 'BTC', 'USD', then include the additions in `currencyOptions`.
 
----
+Note: If you change currency, you must provide your own currency conversion code!
 
-##### `currencyOptions`
+#### `currencyOptions`
 - **Type**: Array of Strings
-- **Optional**: No (Required)
-- **Description**: 
-  Defines the set of currencies that can be selected from the dropdown. For example, `['BTC', 'USD']`.
+- **Required**: No (Optional)
+- **Description**: Defines the set of currencies that can be selected from the dropdown. Use with `currency` prop.
+- **Default**: ['SATS']. You can add to the array: ['SATS, BTC, USD']
 
----
+Note: If you change currency, you must provide your own currency conversion code!
 
-##### `defaultPaymentMethod`
+#### `defaultPaymentMethod`
 - **Type**: String
-- **Optional**: No (Required)
-- **Description**: 
-  Sets the payment method that will be pre-selected when the component loads, such as 'SATS'.
+- **Required**: No (Optional)
+- **Description**: Sets the payment method that will be used to process payments.
+- **Default**: 'SATS'. You can select 'SATS' (OFF-CHAIN) or 'BTC' (ON-CHAIN)
 
----
-
-##### `formStyles`
-- **Type**: Object (CSS in JavaScript syntax)
-- **Optional**: Yes
-- **Description**: 
-  Allows you to customize the form styles. For example, `{flexDirection: 'column'}`.
-
----
-
-##### `imageSize`
+#### `imageSize`
 - **Type**: String
-- **Optional**: Yes
-- **Description**: 
-  Sets the height for the BTCPay Server logo. Default options are '40px', '46px', or '57px'.
+- **Required**: No (Optional)
+- **Description**: Sets the height for the BTCPay Server logo.
+- **Default**: '46px'. Can be any size. BTCPay logo defaults: '40px', '46px', '57px'
 
----
-
-##### `inputMax`
+#### `inputMax`
 - **Type**: Number
-- **Optional**: No (Required)
-- **Description**: 
-  Sets the maximum amount that can be entered in the input field.
+- **Required**: No (Optional)
+- **Description**: Sets the maximum amount that can be entered in the input field.
+- **Default**: '21000000000000'. Conforms to selected `currency`.
 
----
-
-##### `inputMin`
+#### `inputMin`
 - **Type**: Number
-- **Optional**: No (Required)
-- **Description**: 
-  Sets the minimum amount that can be entered in the input field.
+- **Required**: No (Optional)
+- **Description**: Sets the minimum amount that can be entered in the input field.
+- **Default**: '1'. Conforms to selected `currency`.
 
----
-
-##### `mode`
+#### `mode`
 - **Type**: String
-- **Optional**: No (Required)
-- **Description**: 
-  Sets the display mode of the form. Options are 'Fixed', 'Custom', or 'Slider'.
+- **Required**: No (Optional)
+- **Description**: Sets the display mode of the form.
+- **Default**: 'Slider'. Choose: 'Slider', 'Fixed', or 'Custom'.
 
----
-
-##### `notifyEmail`
+#### `notifyEmail`
 - **Type**: String (Email)
-- **Optional**: Yes
-- **Description**: 
-  The email address where transaction notifications will be sent.
+- **Required**: No (Optional)
+- **Description**: The email address where transaction notifications will be sent.
+- **Default**: None. You can add an email address here.
 
----
-
-##### `orderId`
+#### `orderId`
 - **Type**: String
-- **Optional**: Yes
-- **Description**: 
-  An identifier for the order, useful for tracking transactions.
+- **Required**: No (Optional)
+- **Description**: An identifier for the order.
+- **Default**: None. Add an Order ID to the invoice.
 
----
-
-##### `plusMinusButtonStyles`
-- **Type**: Object (CSS in JavaScript syntax)
-- **Optional**: Yes
-- **Description**: 
-  Allows you to customize the styles for the plus and minus buttons.
-
----
-
-##### `rangeInputStyles`
-- **Type**: Object (CSS in JavaScript syntax)
-- **Optional**: Yes
-- **Description**: 
-  Allows you to customize the styles for the range input (slider).
-
----
-
-##### `serverIpn`
+#### `serverIpn`
 - **Type**: String (URL)
-- **Optional**: Yes
-- **Description**: 
-  The URL where Instant Payment Notifications (IPN) will be sent. The server must be capable of handling POST requests.
+- **Required**: No (Optional)
+- **Description**: The URL where Instant Payment Notifications (IPN) will be sent.
+- **Default**: None. Add a URL for your IPN.
 
----
-
-##### `showImage`
+#### `showImage`
 - **Type**: Boolean
-- **Optional**: No (Required)
-- **Description**: 
-  Choose to show or hide the BTCPay Server logo. Options are `true` or `false`.
+- **Required**: No (Optional)
+- **Description**: Choose to show or hide the BTCPay Server logo.
 
----
-
-##### `sliderMax`
+#### `sliderMax`
 - **Type**: Number
-- **Optional**: No (Required)
-- **Description**: 
-  Sets the maximum value for the payment slider.
+- **Required**: No (Optional)
+- **Description**: Sets the maximum value for the payment slider.
+- **Default**: '250000'. Conforms to selected `currency`.
 
----
-
-##### `sliderMin`
+#### `sliderMin`
 - **Type**: Number
-- **Optional**: No (Required)
-- **Description**: 
-  Sets the minimum value for the payment slider.
+- **Required**: No (Optional)
+- **Description**: Sets the minimum value for the payment slider.
+- **Default**: '1'. Conforms to selected `currency`.
 
----
-
-##### `storeId`
+#### `storeId` (Required)
 - **Type**: String
-- **Optional**: No (Required)
-- **Description**: 
-  The ID of your store on BTCPay Server.
+- **Required**: Yes
+- **Description**: REQUIRED. The ID of your store on BTCPay Server.
+- **Default**: None. You MUST add a Store ID.
 
----
-
-##### `submitBtnText`
+#### `submitBtnText`
 - **Type**: String
-- **Optional**: No (Required)
-- **Description**: 
-  Sets the text for the submit button.
+- **Required**: No (Optional)
+- **Description**: Sets the text for the submit button.
+- **Default**: 'Pay with'. You can change to any text. Keep it short!
 
----
+### Style Props
 
-##### `submitButtonStyles`
+#### `amountInputStyles`
 - **Type**: Object (CSS in JavaScript syntax)
-- **Optional**: Yes
-- **Description**: 
-  Allows you to customize the styles for the submit button.
+- **Required**: No (Optional)
+- **Description**: Allows you to customize the styles for the amount input field.
+- **Default**: *See all default styles below in the 'Advanced Usage' example.
 
----
-
-##### `submitButtonTextStyles`
+#### `formStyles`
 - **Type**: Object (CSS in JavaScript syntax)
-- **Optional**: Yes
-- **Description**: 
-  Allows you to customize the styles for the text within the submit button.
+- **Required**: No (Optional)
+- **Description**: Allows you to customize the form styles.
+- **Default**: *See all default styles below in the 'Advanced Usage' example.
+
+#### `plusMinusButtonStyles`
+- **Type**: Object (CSS in JavaScript syntax)
+- **Required**: No (Optional)
+- **Description**: Allows you to customize the styles for the plus and minus buttons.
+- **Default**: *See all default styles below in the 'Advanced Usage' example.
+
+#### `rangeInputStyles`
+- **Type**: Object (CSS in JavaScript syntax)
+- **Required**: No (Optional)
+- **Description**: Allows you to customize the styles for the range input (slider).
+- **Default**: *See all default styles below in the 'Advanced Usage' example.
+
+#### `submitButtonStyles`
+- **Type**: Object (CSS in JavaScript syntax)
+- **Required**: No (Optional)
+- **Description**: Allows you to customize the styles for the submit button.
+- **Default**: *See all default styles below in the 'Advanced Usage' example.
+
+#### `submitButtonTextStyles`
+- **Type**: Object (CSS in JavaScript syntax)
+- **Required**: No (Optional)
+- **Description**: Allows you to customize the styles for the text within the submit button.
+- **Default**: *See all default styles below in the 'Advanced Usage' example.
 
 ---
 
 ### Example: Advanced Usage
 
-An advanced example with all available options:
+Advanced Usage example showing all available options:
 
 ```jsx
 <ReactBtcPayButton
-  amountInputStyles={{maxWidth: '100%'}}
-  browserRedirect=''
-  btcPayDomain='yourserver.com'
-  checkoutDesc=''
-  currency='SATS'
-  currencyOptions={['SATS']}
-  defaultPaymentMethod='SATS'
-  formStyles={{flexDirection: 'column'}}
-  imageSize=''
-  inputMax={21000000000000}
-  inputMin={1}
-  mode='Fixed'
-  notifyEmail=''
-  orderId=''
-  plusMinusButtonStyles={{cursor: 'pointer'}}
-  rangeInputStyles={{maxWidth: '100%'}}
-  serverIpn=''
-  selectStyles={{fontSize: '11px'}}
-  showImage={false}
-  sliderMax={250000}
-  sliderMin={1}
-  storeId='yourstoreid'
-  submitBtnText='Pay with'
-  submitButtonStyles={{backgroundColor: '#0f3b21', borderRadius: '4px', minWidth: '168px'}}
-  submitButtonTextStyles={{fontSize: '16px', fontFamily: 'sans-serif'}}
+  // === General Props ===
+  browserRedirect='https://redirect.com' // Browser redirect URL
+  btcPayDomain='server.com' // REQUIRED - BTCPay Server domain
+  checkoutDesc='Thank you for your payment!' // Invoice description
+  currency='SATS' // Default currency for invoices
+  currencyOptions={['SATS', 'BTC']} // Currency options for dropdown
+  defaultPaymentMethod='SATS' // Payment method to use: 'BTC' or 'SATS'
+  imageSize='46px' // BTCPay Server logo height
+  inputMax={21000000000000} // Input field maximum
+  inputMin={1} // Input field minimum
+  mode='Slider' // Form Options: 'Fixed', 'Custom', 'Slider'
+  notifyEmail='email@youremail.com' // Notification email address
+  orderId='0001' // Order ID
+  serverIpn='serverIPN.com' // Server IPN
+  showImage={true} // BTCPay logo in button? {true} or {false}
+  sliderMax={250000} // Slider range maximum
+  sliderMin={1} // Slider range minimum
+  storeId='storeid' // REQUIRED - BTCPay Server Store ID
+  submitBtnText='Pay with' // Text on Button
+
+  // === Style Props ===
+  
+  // Override input field styles
+  amountInputStyles={{
+    MozAppearance: 'textfield',
+    WebkitAppearance: 'textfield',
+    appearance: 'textfield',
+    border: 'none',
+    boxShadow: 'none',
+    textAlign: 'center',
+    fontSize: '25px',
+    margin: 'auto',
+    marginBottom: 0,
+    borderRadius: '5px',
+    lineHeight: '35px',
+    background: '#fff',
+    color: '#000',
+    width: '140px',
+    maxWidth: '100%'
+  }}
+  
+  // Override form styles
+  formStyles={{
+    display: 'inline-flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }}
+  
+  // Override plus/minus button styles
+  plusMinusButtonStyles={{
+    cursor: 'pointer',
+    fontSize: '25px',
+    lineHeight: '25px',
+    background: '#DFE0E1',
+    height: '30px',
+    width: '45px',
+    border: 'none',
+    borderRadius: '60px',
+    margin: 'auto 5px',
+    display: 'inline-flex',
+    justifyContent: 'center'
+  }}
+  
+  // Override slider styles
+  rangeInputStyles={{
+    MozAppearance: 'none',
+    WebkitAppearance: 'none',
+    appearance: 'none',
+    width: '100%',
+    background: 'transparent',
+    marginTop: '10px',
+    marginBottom: 0,
+    outline: 0
+  }}
+  
+  // Override select styles
+  selectStyles={{
+    MozAppearance: 'none',
+    WebkitAppearance: 'none',
+    appearance: 'none',
+    color: 'currentColor',
+    background: 'transparent',
+    border: '1px solid',
+    borderColor: 'transparent',
+    display: 'block',
+    padding: '1px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginBottom: '10px',
+    fontSize: '11px',
+    cursor: 'pointer'
+  }}
+  
+  // Override submit button styles
+  submitButtonStyles={{
+    marginTop: '1rem',
+    marginBottom: '2rem',
+    minWidth: '168px',
+    minHeight: '46px',
+    borderRadius: '4px',
+    backgroundColor: '#0f3b21',
+    cursor: 'pointer',
+    border: '2px solid transparent'
+  }}
+  
+  // Override submit button text styles
+  submitButtonTextStyles={{
+    color: '#fff',
+    fontSize: '16px'
+  }}
 />
 
 ```

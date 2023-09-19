@@ -1,6 +1,6 @@
 # Contributing to React BTCPay Server Pay Button
 
-First off, thank you for considering contributing to React BTCPay Server Pay Button. It's people like you that make the project such a great tool.
+Thank you for considering contributing to React BTCPay Server Pay Button.
 
 ## Table of Contents
 
@@ -40,10 +40,7 @@ By participating in this project, you are expected to uphold our [Code of Conduc
 
 ## Coding Style
 
-This project uses ESLint and Prettier. To ensure your code meets our style guidelines:
-
-1. Run `npm install` to install the required packages.
-2. Run `npm run lint` to check your code for errors.
+To ensure long-term maintainability and ease of collaboration, please adhere to best practices when writing your code. This includes proper documentation, modular design, consistent naming conventions, and thorough testing. By following these guidelines, you'll make it easier for Contributors to understand, update, and build upon your work in the future.
 
 ## Commit Messages
 
@@ -59,4 +56,4 @@ Follow these guidelines for writing commit messages:
 2. Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations, and container parameters.
 3. You may merge the Pull Request in once you have the sign-off of at least one other developer, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
 
-Thank you again for your interest in contributing to React BTCPay Server Pay Button.
+Thank you again for your interest in contributing to React BTCPay Server Pay Button!
