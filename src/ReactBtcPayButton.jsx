@@ -7,41 +7,47 @@ import React, { useState, useEffect } from 'react';
 // Define the ReactBtcPayButton component
 export const ReactBtcPayButton = ({
     // Default settings that can be overridden when using this component
-    jsonResponse = true, // Required
+    // REQUIRED
     btcPayDomain = '', // Required
     storeId = '', // Required
-    currency: currencyProp = 'SATS', // Required
-    currencyOptions = ['SATS'], // Required
-    defaultPaymentMethod = 'SATS', // Required
-    mode = 'Slider', // Required
-    inputMin = 1, // Required
-    inputMax = 21000000000000, // Required
-    sliderMin = 1, // Required
-    sliderMax = 250000, // Required
-    submitBtnText = 'Pay with ', // Required
-    showImage = false, // Required
-    imageSize = '57px',
-    checkoutDesc = '',
-    orderId = '',
-    serverIpn = '',
-    notifyEmail = '',
-    browserRedirect = '',
-    checkoutQueryString = '',
-    // Custom User Styles
-    outerContainerStyles: customOuterContainerStyles = {},
-    innerContainerStyles: customInnerContainerStyles = {},
-    formStyles: customFormStyles = {},
-    plusMinusButtonStyles: customPlusMinusButtonStyles = {},
-    selectStyles: customSelectStyles = {},
-    selectOptionStyles: customSelectOptionStyles = {},
+    // ADDITIONAL
+    browserRedirect = '', // Default
+    checkoutDesc = '', // Default
+    checkoutQueryString = '', // Default
+    currency: currencyProp = 'SATS', // Default
+    currencyOptions = ['SATS'], // Default
+    defaultPaymentMethod = 'SATS', // Default
+    imageShow = true, // Default
+    imageSize = '46px', // Default
+    inputMax = 21000000000000, // Default
+    inputMin = 1, // Default
+    jsonResponse = true, // Default
+    mode = 'Slider', // Default
+    notifyEmail = '', // Default
+    orderId = '', // Default
+    serverIpn = '', // Default
+    sliderMax = 250000, // Default
+    sliderMin = 1, // Default
+    submitBtnText = 'Pay with ', // Default
+    // STYLES
     amountInputStyles: customAmountInputStyles = {},
+    formStyles: customFormStyles = {},
+    imageStyles: customImageStyles = {},
+    innerContainerStyles: customInnerContainerStyles = {},
+    outerContainerStyles: customOuterContainerStyles = {},
+    plusMinusButtonStyles: customPlusMinusButtonStyles = {},
     rangeInputStyles: customRangeInputStyles = {},
+    selectOptionStyles: customSelectOptionStyles = {},
+    selectStyles: customSelectStyles = {},
     submitButtonStyles: customSubmitButtonStyles = {},
     submitButtonTextStyles: customSubmitButtonTextStyles = {},
-    imageStyles: customImageStyles = {},
 }) => {
     const [isSelectHover, setIsSelectHover] = useState(false);
     const [isSubmitButtonHover, setIsSubmitButtonHover] = useState(false);
+    // State variables to hold the price and currency
+    const [price, setPrice] = useState(1);
+    const [currency, setCurrency] = useState(currencyProp);
+    const [prevCurrency, setPrevCurrency] = useState(currency);
 
     const formStyles = {
         display: 'inline-flex',
@@ -70,6 +76,7 @@ export const ReactBtcPayButton = ({
         cursor: 'pointer',
         fontSize: '25px',
         lineHeight: '25px',
+        color: '#000',
         background: '#DFE0E1',
         height: '30px',
         width: '45px',
@@ -263,9 +270,19 @@ export const ReactBtcPayButton = ({
         }
     `;
 
-    // State variables to hold the price and currency
-    const [price, setPrice] = useState(1);
-    const [currency, setCurrency] = useState(currencyProp);
+    // Update this function to handle currency change
+    const handleCurrencyChange = (e) => {
+        const newCurrency = e.target.value;
+        setCurrency(newCurrency);
+
+        if (prevCurrency === 'SATS' && newCurrency === 'BTC') {
+            setPrice((price / 100000000).toFixed(8)); // Convert SATs to BTC
+        } else if (prevCurrency === 'BTC' && newCurrency === 'SATS') {
+            setPrice(Math.floor(price * 100000000)); // Convert BTC to SATs
+        }
+
+        setPrevCurrency(newCurrency); // Update the previous currency
+    };
 
     // Function to handle changes in the slider
     const handleSliderChange = (e) => {
@@ -275,20 +292,73 @@ export const ReactBtcPayButton = ({
         }
     };
 
+    // State to track if the input is focused
+    const [isFocused, setIsFocused] = React.useState(false);
+
     // Function to handle changes in the price input
     const handlePriceChange = (e) => {
         let newValue = e.target.value.replace(/,/g, '');
-        let newPrice = parseInt(newValue, 10);
+        let newPrice;
 
-        // If the value is empty or NaN, default to '0'
+        if (currency === 'BTC') {
+            newPrice = parseFloat(newValue);
+        } else {
+            newPrice = parseInt(newValue, 10);
+        }
+
         if (newValue === '' || isNaN(newPrice)) {
             setPrice(0);
+            return;
+        }
+
+        if (currency === 'BTC') {
+            if (newValue.endsWith('.')) {
+                setPrice(newValue);
+                return;
+            }
+            if (isFocused) {
+                setPrice(newValue);
+            } else {
+                newPrice = parseFloat(newValue).toFixed(8);
+                setPrice(newPrice);
+            }
             return;
         }
 
         if (newPrice >= inputMin && newPrice <= inputMax) {
             setPrice(newPrice);
         }
+    };
+
+    // Function to handle focus on the input
+    const handleFocus = () => {
+        setIsFocused(true);
+    };
+
+    // Function to handle blur on the input
+    const handleBlur = () => {
+        setIsFocused(false);
+        // Re-format the price when the input loses focus
+        setPrice(prevPrice => parseFloat(prevPrice).toFixed(8));
+    };
+
+    // Function to format the price
+    const formatPrice = (price, curr) => {
+        if (curr === 'BTC') {
+            if (!isFocused) {
+                const formattedPrice = parseFloat(price).toFixed(8);
+                // Remove decimal part if it's all zeros
+                const [whole, decimal] = formattedPrice.split('.');
+                if (decimal === '00000000') {
+                    return whole;
+                }
+                return formattedPrice;
+            }
+            return price;
+        } else if (curr === 'SATS') {
+            return parseInt(price, 10).toLocaleString();
+        }
+        return price;
     };
 
     // Function to increment or decrement price
@@ -316,11 +386,6 @@ export const ReactBtcPayButton = ({
     };
     const handleSubmitButtonMouseLeave = () => {
         setIsSubmitButtonHover(false);
-    };
-
-    // Function to format the price with commas
-    const formatPrice = (price) => {
-        return price.toLocaleString('en-US'); // Optional: Edit as needed
     };
 
     // Function to handle form submission
@@ -365,7 +430,6 @@ export const ReactBtcPayButton = ({
     }, [btcPayButtonStyles]);
 
 
-
     // The form that will be displayed
     return (
         <form
@@ -381,13 +445,15 @@ export const ReactBtcPayButton = ({
                 {mode.toLowerCase() === 'fixed' && (
                     <div style={innerContainerStyles}>
                         <input
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             style={amountInputStyles}
                             className="btcpay-input-price"
                             type="text"
                             name="price"
                             min={inputMin}
                             max={inputMax}
-                            value={formatPrice(price)}
+                            value={formatPrice(price, currency)}
                             onChange={handlePriceChange}
                         />
                     </div>
@@ -404,11 +470,13 @@ export const ReactBtcPayButton = ({
                             -
                         </button>
                         <input
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             style={amountInputStyles}
                             className="btcpay-input-price"
                             type="text"
                             name="price"
-                            value={formatPrice(price)}
+                            value={formatPrice(price, currency)}
                             onChange={handlePriceChange}
                         />
                         <button
@@ -425,13 +493,15 @@ export const ReactBtcPayButton = ({
                 {mode.toLowerCase() === 'slider' && (
                     <div style={innerContainerStyles}>
                         <input
+                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             style={amountInputStyles}
                             className="btcpay-input-price"
                             type="text"
                             name="price"
                             min={inputMin}
                             max={inputMax}
-                            value={formatPrice(price)}
+                            value={formatPrice(price, currency)}
                             onChange={handlePriceChange}
                         />
                         <input
@@ -450,7 +520,7 @@ export const ReactBtcPayButton = ({
                 <select
                     name="currency"
                     value={currency}
-                    onChange={(e) => setCurrency(e.target.value)}
+                    onChange={handleCurrencyChange}
                     onMouseEnter={handleSelectMouseEnter}
                     onMouseLeave={handleSelectMouseLeave}
                     style={selectStyles}
@@ -492,7 +562,7 @@ export const ReactBtcPayButton = ({
                 <span style={submitButtonTextStyles}>
                     {submitBtnText}
                 </span>
-                {showImage && (
+                {imageShow && (
                     <img
                         src={`https://${btcPayDomain}/img/paybutton/logo.svg`}
                         alt="BTCPay Logo"
@@ -505,26 +575,26 @@ export const ReactBtcPayButton = ({
 
     // OPTIONAL: Run 'npm install prop-types' then import PropTypes from 'prop-types';
     // ReactBtcPayButton.propTypes = {
-    //     jsonResponse: PropTypes.bool,
+    //     browserRedirect: PropTypes.string,
+    //     btcPayDomain: PropTypes.string,
+    //     checkoutDesc: PropTypes.string,
+    //     checkoutQueryString: PropTypes.string,
     //     currency: PropTypes.string,
     //     currencyOptions: PropTypes.arrayOf(PropTypes.string),
     //     defaultPaymentMethod: PropTypes.string,
-    //     checkoutDesc: PropTypes.string,
+    //     imageShow: PropTypes.bool,
+    //     imageSize: PropTypes.string,
+    //     inputMax: PropTypes.number,
+    //     inputMin: PropTypes.number,
+    //     jsonResponse: PropTypes.bool,
+    //     mode: PropTypes.string,
+    //     notifyEmail: PropTypes.string,
     //     orderId: PropTypes.string,
     //     serverIpn: PropTypes.string,
-    //     notifyEmail: PropTypes.string,
-    //     browserRedirect: PropTypes.string,
-    //     checkoutQueryString: PropTypes.string,
-    //     submitBtnText: PropTypes.string,
-    //     btcPayDomain: PropTypes.string,
-    //     storeId: PropTypes.string,
-    //     mode: PropTypes.string,
-    //     inputMin: PropTypes.number,
-    //     inputMax: PropTypes.number,
-    //     sliderMin: PropTypes.number,
     //     sliderMax: PropTypes.number,
-    //     showImage: PropTypes.bool,
-    //     imageSize: PropTypes.string,
+    //     sliderMin: PropTypes.number,
+    //     storeId: PropTypes.string,
+    //     submitBtnText: PropTypes.string,
     // };
 
 };
