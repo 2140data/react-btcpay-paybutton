@@ -285,8 +285,8 @@ Advanced Usage Example showing all available options:
   btcPayDomain='server.com' // REQUIRED - BTCPay Server domain
   checkoutDesc='Thank you for your payment!' // Invoice description
   currency='SATS' // Default currency for invoices
-  currencyOptions={['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']} // Currency options for dropdown
-  defaultPaymentMethod='' // Options: '' (Store Default), 'BTC_LightningLike' (Off-chain), or 'BTC' (On-chain)
+  currencyOptions={['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']} // Options for dropdown
+  defaultPaymentMethod='' // How BTCPay Server will process transactions
   imageShow={true} // BTCPay logo in button? {true} or {false}
   imageSize='46px' // BTCPay Server logo height
   inputMax={21000000000000} // Input field maximum
