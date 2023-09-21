@@ -69,8 +69,8 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 | `browserRedirect`     | `string` | The URL for browser redirection after payment.     | `''`               | Add a URL                 |
 | `checkoutDesc`        | `string` | Description that appears on the checkout invoice.  | `''`               | Add a description         |
 | `currency`            | `string` | Specifies the default currency for payments. [MORE INFO](#details-currency)      | `'SATS'`            | `'SATS', 'BTC'` |
-| `currencyOptions`     | `array of strings`  | Defines the set of currencies for the dropdown. [MORE INFO](#details-currency-options)  | `['SATS']`          | `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']` |
-| `defaultPaymentMethod`| `string` | Specifies the initially selected payment method.  | `''`            | `'', 'BTC_LightningLike', 'BTC'`           |
+| `currencyOptions`     | `array of strings`  | Defines the set of currencies for the dropdown. [MORE INFO](#details-currency-options)  | `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']`          | `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']` |
+| `defaultPaymentMethod`| `string` | Specifies the payment method that will be used to process transactions by default.  | `''`            | `'', 'BTC_LightningLike', 'BTC'`           |
 | `imageShow`           | `boolean`| Choose to show or hide the BTCPay logo on button.          | `true`             | `true`, `false`           |
 | `imageSize`           | `string` | Specifies the height for the BTCPay logo on button.        | `'46px'`            | Enter any CSS size (px, % or rem)  |
 | `inputMax`            | `number` | Specifies the maximum amount for the input field. | `21000000000000`    | Enter a number            |
@@ -141,7 +141,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 - **Use With**: `currency`
 - **Required**: No (Optional)
 - **Description**: Defines the list of currencies that will be available in the dropdown for the user to select. This should be used in conjunction with the `currency` prop.
-- **Default**: `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']`. You can extend the array to include other currencies with props.
+- **Default**: `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']`. More currencies will be supported soon!
 
 :warning: **IMPORTANT** :warning:  
 If you add new currencies, you must set a 'Preferred Price Source' in BTCPay Server under Store Settings > Rates. [See the BTCPay documentation](https://docs.btcpayserver.org/FAQ/Stores/#how-to-change-the-exchange-rate-provider-for-invoices)
@@ -150,7 +150,7 @@ If you add new currencies, you must set a 'Preferred Price Source' in BTCPay Ser
 - **Type**: `String`
 - **Required**: No (Optional)
 - **Description**: 
-  - Specifies the payment method that will be pre-selected when the payment form loads.
+  - Specifies the payment method that will be used to process transactions by default.
   - The `defaultPaymentMethod` prop offers three distinct payment options for the transaction:
     1. `''`: Leave it empty to use the Store Default (Set in BTCPay Server Settings).
     2. `'BTC_LightningLike'`: For Off-chain transactions (Lightning).
