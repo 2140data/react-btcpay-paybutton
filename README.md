@@ -51,8 +51,8 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 
 | Prop          | Type     | Description                                       | Default Value | Available Options |
 |---------------|----------|---------------------------------------------------|---------------|-------------------|
-| `btcPayDomain`| `string` | 🔴 **REQUIRED** The domain where your BTCPay Server is hosted. | `''`  | Add a URL         |
-| `storeId`     | `string` | 🔴 **REQUIRED** The ID of your store on the BTCPay Server.    | `''`  | Add a URL         |
+| `btcPayDomain`| `string` | :red_circle: **REQUIRED** The domain where your BTCPay Server is hosted. | `''`  | Add a URL         |
+| `storeId`     | `string` | :red_circle: **REQUIRED** The ID of your store on the BTCPay Server.    | `''`  | Add a URL         |
 
 #### OPTIONAL Additional Props
 
@@ -125,7 +125,8 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 - **Description**: Determines the default currency used for payments. This is the currency in which the payment amount will be displayed.
 - **Default**: 'SATS'. Other options like 'BTC', 'USD' can be added and must be included in `currencyOptions`.
 
-:warning: **IMPORTANT** If you change the default currency, you are responsible for providing your own currency conversion logic!
+:warning: **IMPORTANT** :warning:  
+If you change the default currency, you are responsible for providing your own currency conversion logic!
 
 <a id="details-currency-options"></a>
 
@@ -135,7 +136,8 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 - **Description**: Defines the list of currencies that will be available in the dropdown for the user to select. This should be used in conjunction with the `currency` prop.
 - **Default**: ['SATS']. You can extend the array to include other currencies like ['SATS', 'BTC', 'USD'].
 
-:warning: **IMPORTANT** If you add new currencies, you are responsible for providing your own currency conversion logic!
+:warning: **IMPORTANT** :warning:  
+If you add new currencies, you are responsible for providing your own currency conversion logic!
 
 #### `defaultPaymentMethod`
 - **Type**: `String`
