@@ -127,7 +127,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 - **Default**: 'SATS'. Other options like 'BTC', 'USD' can be added and must be included in `currencyOptions`.
 
 :warning: **IMPORTANT** :warning:  
-If you change the default currency, you must set a 'Preferred Price Source' in BTCPay Server under Store Settings > Rates. <a href="https://docs.btcpayserver.org/FAQ/Stores/#how-to-change-the-exchange-rate-provider-for-invoices" target="_blank" rel="noopener noreferrer">See BTCPay documentation</a>
+If you change the default currency, you must set a 'Preferred Price Source' in BTCPay Server under Store Settings > Rates. [See the BTCPay documentation](https://docs.btcpayserver.org/FAQ/Stores/#how-to-change-the-exchange-rate-provider-for-invoices)
 
 <a id="details-currency-options"></a>
 
@@ -139,7 +139,7 @@ If you change the default currency, you must set a 'Preferred Price Source' in B
 - **Default**: ['SATS']. You can extend the array to include other currencies like ['SATS', 'BTC', 'USD'].
 
 :warning: **IMPORTANT** :warning:  
-If you add new currencies, you must set a 'Preferred Price Source' in BTCPay Server under Store Settings > Rates. <a href="https://docs.btcpayserver.org/FAQ/Stores/#how-to-change-the-exchange-rate-provider-for-invoices" target="_blank" rel="noopener noreferrer">See BTCPay documentation</a>
+If you add new currencies, you must set a 'Preferred Price Source' in BTCPay Server under Store Settings > Rates. [See the BTCPay documentation](https://docs.btcpayserver.org/FAQ/Stores/#how-to-change-the-exchange-rate-provider-for-invoices)
 
 #### `defaultPaymentMethod`
 - **Type**: `String`
