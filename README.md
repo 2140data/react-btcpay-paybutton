@@ -128,7 +128,6 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 
 :warning: **IMPORTANT** :warning:  
 If you change the default currency, you must set a 'Preferred Price Source' in BTCPay Server under Store Settings > Rates. <a href="https://docs.btcpayserver.org/FAQ/Stores/#how-to-change-the-exchange-rate-provider-for-invoices" target="_blank" rel="noopener noreferrer">See BTCPay documentation</a>
-()
 
 <a id="details-currency-options"></a>
 
