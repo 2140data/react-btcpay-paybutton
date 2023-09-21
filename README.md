@@ -51,8 +51,8 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 
 | Prop          | Type     | Description                                       | Default Value | Available Options |
 |---------------|----------|---------------------------------------------------|---------------|-------------------|
-| `btcPayDomain`| `string` | **<span style="color:red">REQUIRED</span>.** The domain where your BTCPay Server is hosted. | `''`  | Add a URL         |
-| `storeId`     | `string` | **<span style="color:red">REQUIRED</span>.** The ID of your store on the BTCPay Server.    | `''`  | Add a URL         |
+| `btcPayDomain`| `string` | 🔴 **REQUIRED** The domain where your BTCPay Server is hosted. | `''`  | Add a URL         |
+| `storeId`     | `string` | 🔴 **REQUIRED** The ID of your store on the BTCPay Server.    | `''`  | Add a URL         |
 
 #### OPTIONAL Additional Props
 
