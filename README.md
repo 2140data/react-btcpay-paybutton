@@ -63,11 +63,11 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 | `currency`            | `string` | Specifies the default currency for payments. [MORE INFO](#details-currency)      | `'SATS'`            | `'SATS', 'BTC', 'USD', etc.` |
 | `currencyOptions`     | `array of strings`  | Defines the set of currencies for the dropdown. [MORE INFO](#details-currency-options)  | `['SATS']`          | `['SATS', 'BTC', 'USD', etc.]` |
 | `defaultPaymentMethod`| `string` | Specifies the initially selected payment method.  | `'SATS'`            | `'SATS', 'BTC'`           |
-| `imageShow`           | `boolean`| Choose to show or hide the BTCPay logo on button.          | `false`             | `true`, `false`           |
+| `imageShow`           | `boolean`| Choose to show or hide the BTCPay logo on button.          | `true`             | `true`, `false`           |
 | `imageSize`           | `string` | Specifies the height for the BTCPay logo on button.        | `'46px'`            | Enter any CSS size (px, % or rem)  |
 | `inputMax`            | `number` | Specifies the maximum amount for the input field. | `21000000000000`    | Enter a number            |
 | `inputMin`            | `number` | Specifies the minimum amount for the input field. | `1`                 | Enter a number            |
-| `mode`                | `string` | The display mode of the BTCPay form. [MORE INFO](#details-mode)              | `'Slider'`          | `'Fixed', 'Slider', 'Custom'` |
+| `mode`                | `string` | Select a display mode for the BTCPay Pay Button. [MORE INFO](#details-mode)              | `'Slider'`          | `'Fixed', 'Slider', 'Custom'` |
 | `notifyEmail`         | `string` | The email address for transaction notifications.  | `''`                | Add an email address      |
 | `orderId`             | `string` | An identifier for the order.                      | `''`                | Add an order number       |
 | `serverIpn`           | `string` | The URL for Instant Payment Notifications (IPN).  | `''`                | Add a URL                 |
