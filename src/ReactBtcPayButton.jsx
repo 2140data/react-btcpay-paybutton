@@ -350,15 +350,17 @@ export const ReactBtcPayButton = ({
                 // Remove decimal part if it's all zeros
                 const [whole, decimal] = formattedPrice.split('.');
                 if (decimal === '00000000') {
-                    return whole;
+                    return parseInt(whole, 10).toLocaleString(); // Add commas for BTC
                 }
-                return formattedPrice;
+                return parseFloat(formattedPrice).toLocaleString('en-US', { minimumFractionDigits: 8, maximumFractionDigits: 8 }); // Add commas for BTC
             }
             return price;
         } else if (curr === 'SATS') {
-            return parseInt(price, 10).toLocaleString();
+            return parseInt(price, 10).toLocaleString(); // No decimals for SATS, adds commas
+        } else if (curr === 'USD' || curr === 'EUR') {
+            return parseFloat(price).toLocaleString('en-US'); // Add commas for Fiat
         }
-        return price;
+        return price; // No decimals for other currencies
     };
 
     // Function to increment or decrement price

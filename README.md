@@ -121,23 +121,25 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 
 #### `currency`
 - **Type**: `String`
+- **Use With**: `currencyOptions`
 - **Required**: No (Optional)
 - **Description**: Determines the default currency used for payments. This is the currency in which the payment amount will be displayed.
 - **Default**: 'SATS'. Other options like 'BTC', 'USD' can be added and must be included in `currencyOptions`.
 
 :warning: **IMPORTANT** :warning:  
-If you change the default currency, you are responsible for providing your own currency conversion logic!
+If you change the default currency, you must set a 'Preferred Price Source' in BTCPay Server under Store Settings > Rates.
 
 <a id="details-currency-options"></a>
 
 #### `currencyOptions`
 - **Type**: `Array of Strings`
+- **Use With**: `currency`
 - **Required**: No (Optional)
 - **Description**: Defines the list of currencies that will be available in the dropdown for the user to select. This should be used in conjunction with the `currency` prop.
 - **Default**: ['SATS']. You can extend the array to include other currencies like ['SATS', 'BTC', 'USD'].
 
 :warning: **IMPORTANT** :warning:  
-If you add new currencies, you are responsible for providing your own currency conversion logic!
+If you add new currencies, you must set a 'Preferred Price Source' in BTCPay Server under Store Settings > Rates.
 
 #### `defaultPaymentMethod`
 - **Type**: `String`
