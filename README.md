@@ -79,7 +79,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 | `browserRedirect`     | `string` | The URL for browser redirection after payment.     | `''`               | Add a URL                 |
 | `checkoutDesc`        | `string` | Description that appears on the checkout invoice.  | `''`               | Add a description         |
 | `currency`            | `string` | Specifies the default currency for payments. [MORE INFO](#details-currency)      | `'SATS'`            | `'SATS', 'BTC'` |
-| `currencyOptions`     | `array of strings`  | Defines the set of currencies for the dropdown. [MORE INFO](#details-currency-options)  | `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']`          | `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']` |
+| `currencyOptions`     | `array of strings`  | Defines the set of currencies for the dropdown. [MORE INFO](#details-currency-options)  | `['SATS', 'BTC']`          | `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']` |
 | `defaultPaymentMethod`| `string` | Specifies the payment method that will be used to process transactions. [MORE INFO](#details-default-payment-method)  | `''`            | `'', 'BTC_LightningLike', 'BTC'`           |
 | `imageShow`           | `boolean`| Choose to show or hide the BTCPay logo on button.          | `true`             | `true`, `false`           |
 | `imageSize`           | `string` | Specifies the height for the BTCPay logo on button.        | `'46px'`            | Enter any CSS size (px, % or rem)  |
@@ -97,12 +97,12 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 
 | Prop                    | Type     | Description                                       | Default Value       | Available Options         |
 |-------------------------|----------|---------------------------------------------------|---------------------|---------------------------|
-| `amountInputStyles`     | `object` | Override input field styles.                       | `{}`                | Listed below              |
-| `formStyles`            | `object` | Override form styles.                             | `{}`                | Listed below              |
-| `plusMinusButtonStyles` | `object` | Override plus/minus button styles.                | `{}`                | Listed below              |
-| `rangeInputStyles`      | `object` | Override slider styles.                           | `{}`                | Listed below              |
-| `submitButtonStyles`    | `object` | Override button styles.                           | `{}`                | Listed below              |
-| `submitButtonTextStyles`| `object` | Override button text styles.                      | `{}`                | Listed below              |
+| `amountInputStyles`     | `object` | Override input field styles.                      | [LISTED BELOW](#details-advanced-usage-example)                | Any CSS<br/>(JS Object)              |
+| `formStyles`            | `object` | Override form styles.                             | [LISTED BELOW](#details-advanced-usage-example)                | Any CSS<br/>(JS Object)              |
+| `plusMinusButtonStyles` | `object` | Override plus/minus button styles.                | [LISTED BELOW](#details-advanced-usage-example)                | Any CSS<br/>(JS Object)              |
+| `rangeInputStyles`      | `object` | Override slider styles.                           | [LISTED BELOW](#details-advanced-usage-example)                | Any CSS<br/>(JS Object)              |
+| `submitButtonStyles`    | `object` | Override button styles.                           | [LISTED BELOW](#details-advanced-usage-example)                | Any CSS<br/>(JS Object)              |
+| `submitButtonTextStyles`| `object` | Override button text styles.                      | [LISTED BELOW](#details-advanced-usage-example)                | Any CSS<br/>(JS Object)              |
 
   
 ## How to Use ReactBtcPayButton Props
@@ -287,16 +287,20 @@ If you add new currencies, you must set a 'Preferred Price Source' in BTCPay Ser
 - **Default**: *See all default styles below in the 'Advanced Usage' example.
 
 ---
+<a id="details-advanced-usage-example"></a>
 
 ### Advanced Usage Example
 
-Advanced Usage Example showing all available options:
+Advanced Usage Example showing ALL available options:
 
 ```jsx
 <ReactBtcPayButton
-  // === General Props ===
-  browserRedirect='https://redirect.com' // Browser redirect URL
+  // === REQUIRED Props ===
   btcPayDomain='server.com' // REQUIRED - BTCPay Server domain
+  storeId='storeid' // REQUIRED - BTCPay Server Store ID
+  
+  // === OPTIONAL Additional Props ===
+  browserRedirect='https://redirect.com' // Browser redirect URL
   checkoutDesc='Thank you for your payment!' // Invoice description
   currency='SATS' // Default currency for invoices
   currencyOptions={['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']} // Options for dropdown
@@ -311,12 +315,11 @@ Advanced Usage Example showing all available options:
   serverIpn='serverIPN.com' // Server IPN
   sliderMax={250000} // Slider range maximum
   sliderMin={1} // Slider range minimum
-  storeId='storeid' // REQUIRED - BTCPay Server Store ID
   submitBtnText='Pay with' // Text on Button
 
-  // === Style Props ===
+  // === OPTIONAL Style Props ===
   
-  // Override input field styles
+  // Default input field styles
   amountInputStyles={{
     MozAppearance: 'textfield',
     WebkitAppearance: 'textfield',
@@ -335,7 +338,7 @@ Advanced Usage Example showing all available options:
     maxWidth: '100%'
   }}
   
-  // Override form styles
+  // Default form styles
   formStyles={{
     display: 'inline-flex',
     flexDirection: 'column',
@@ -343,7 +346,7 @@ Advanced Usage Example showing all available options:
     alignItems: 'center'
   }}
   
-  // Override plus/minus button styles
+  // Default plus/minus button styles
   plusMinusButtonStyles={{
     cursor: 'pointer',
     fontSize: '25px',
@@ -359,7 +362,7 @@ Advanced Usage Example showing all available options:
     justifyContent: 'center'
   }}
   
-  // Override slider styles
+  // Default slider styles
   rangeInputStyles={{
     MozAppearance: 'none',
     WebkitAppearance: 'none',
@@ -371,7 +374,7 @@ Advanced Usage Example showing all available options:
     outline: 0
   }}
   
-  // Override select styles
+  // Default select styles
   selectStyles={{
     MozAppearance: 'none',
     WebkitAppearance: 'none',
@@ -389,7 +392,7 @@ Advanced Usage Example showing all available options:
     cursor: 'pointer'
   }}
   
-  // Override submit button styles
+  // Default submit button styles
   submitButtonStyles={{
     marginTop: '1rem',
     marginBottom: '2rem',
@@ -401,7 +404,7 @@ Advanced Usage Example showing all available options:
     border: '2px solid transparent'
   }}
   
-  // Override submit button text styles
+  // Default submit button text styles
   submitButtonTextStyles={{
     color: '#fff',
     fontSize: '16px'

@@ -7,15 +7,15 @@ import React, { useState, useEffect } from 'react';
 // Define the ReactBtcPayButton component
 export const ReactBtcPayButton = ({
     // Default settings that can be overridden when using this component
-    // REQUIRED
+    // REQUIRED Props
     btcPayDomain = '', // Required
     storeId = '', // Required
-    // ADDITIONAL
+    // OPTIONAL Additional Props
     browserRedirect = '', // Default
     checkoutDesc = '', // Default
     checkoutQueryString = '', // Default
     currency: currencyProp = 'SATS', // Default
-    currencyOptions = ['SATS'], // Default
+    currencyOptions = ['SATS', 'BTC'], // Default
     defaultPaymentMethod = '', // Default
     imageShow = true, // Default
     imageSize = '46px', // Default
@@ -29,7 +29,7 @@ export const ReactBtcPayButton = ({
     sliderMax = 250000, // Default
     sliderMin = 1, // Default
     submitBtnText = 'Pay with ', // Default
-    // STYLES
+    // OPTIONAL Style Props
     amountInputStyles: customAmountInputStyles = {},
     formStyles: customFormStyles = {},
     imageStyles: customImageStyles = {},
