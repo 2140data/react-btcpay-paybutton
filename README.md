@@ -85,7 +85,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 | `imageSize`           | `string` | Specifies the height for the BTCPay logo on button.        | `'46px'`            | Enter any CSS size (px, % or rem)  |
 | `inputMax`            | `number` | Specifies the maximum amount for the input field. | `21000000000000`    | Enter a number            |
 | `inputMin`            | `number` | Specifies the minimum amount for the input field. | `1`                 | Enter a number            |
-| `mode`                | `string` | Select a display mode for the BTCPay Pay Button. [MORE INFO](#details-mode)              | `'Slider'`          | `'Fixed', 'Slider', 'Custom'` |
+| `mode`                | `string` | Select a display mode for the BTCPay Pay Button fields. [MORE INFO](#details-mode)              | `'Slider'`          | `'Fixed', 'Slider', 'Custom'` |
 | `notifyEmail`         | `string` | The email address for transaction notifications.  | `''`                | Add an email address      |
 | `orderId`             | `string` | An identifier for the order.                      | `''`                | Add an order number       |
 | `serverIpn`           | `string` | The URL for Instant Payment Notifications (IPN).  | `''`                | Add a URL                 |
