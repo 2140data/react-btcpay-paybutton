@@ -292,7 +292,7 @@ If you add new currencies, you must set a 'Preferred Price Source' in BTCPay Ser
 ### Advanced Usage Example
 
 Advanced Usage Example showing ALL available options:  
-(Scroll down for all CSS styles (as JS objects)
+*Scroll down for all CSS styles (as JS objects)*
 
 ```jsx
 <ReactBtcPayButton
