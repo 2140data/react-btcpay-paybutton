@@ -121,6 +121,8 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 - **Description**: **REQUIRED**. This is the unique identifier for your store on BTCPay Server. Essential for linking the payment button to your store.
 - **Default**: None. You **MUST** specify a Store ID.
 
+---
+
 ### OPTIONAL Additional Props
 
 #### `browserRedirect`
@@ -243,6 +245,8 @@ If you add new currencies, you must set a 'Preferred Price Source' in BTCPay Ser
 - **Required**: No (Optional)
 - **Description**: Sets the display text for the submit button on the payment form. Allows for customization to better match your branding or language.
 - **Default**: 'Pay with'. You can change it to any text, but keep it short for better UI experience.
+
+---
 
 ### OPTIONAL Style Props
 
