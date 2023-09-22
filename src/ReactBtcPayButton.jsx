@@ -16,7 +16,7 @@ export const ReactBtcPayButton = ({
     checkoutQueryString = '', // Default
     currency: currencyProp = 'SATS', // Default
     currencyOptions = ['SATS'], // Default
-    defaultPaymentMethod = 'SATS', // Default
+    defaultPaymentMethod = '', // Default
     imageShow = true, // Default
     imageSize = '46px', // Default
     inputMax = 21000000000000, // Default
@@ -48,6 +48,8 @@ export const ReactBtcPayButton = ({
     const [price, setPrice] = useState(1);
     const [currency, setCurrency] = useState(currencyProp);
     const [prevCurrency, setPrevCurrency] = useState(currency);
+    // State to track if the input field is focused
+    const [isFocused, setIsFocused] = React.useState(false);
 
     const formStyles = {
         display: 'inline-flex',
@@ -270,66 +272,6 @@ export const ReactBtcPayButton = ({
         }
     `;
 
-    // Update this function to handle currency change
-    const handleCurrencyChange = (e) => {
-        const newCurrency = e.target.value;
-        setCurrency(newCurrency);
-
-        if (prevCurrency === 'SATS' && newCurrency === 'BTC') {
-            setPrice((price / 100000000).toFixed(8)); // Convert SATs to BTC
-        } else if (prevCurrency === 'BTC' && newCurrency === 'SATS') {
-            setPrice(Math.floor(price * 100000000)); // Convert BTC to SATs
-        }
-
-        setPrevCurrency(newCurrency); // Update the previous currency
-    };
-
-    // Function to handle changes in the slider
-    const handleSliderChange = (e) => {
-        const scrubbedValue = parseInt(e.target.value, 10);
-        if (!isNaN(scrubbedValue) && scrubbedValue >= sliderMin && scrubbedValue <= sliderMax) {
-            setPrice(scrubbedValue);
-        }
-    };
-
-    // State to track if the input is focused
-    const [isFocused, setIsFocused] = React.useState(false);
-
-    // Function to handle changes in the price input
-    const handlePriceChange = (e) => {
-        let newValue = e.target.value.replace(/,/g, '');
-        let newPrice;
-
-        if (currency === 'BTC') {
-            newPrice = parseFloat(newValue);
-        } else {
-            newPrice = parseInt(newValue, 10);
-        }
-
-        if (newValue === '' || isNaN(newPrice)) {
-            setPrice(0);
-            return;
-        }
-
-        if (currency === 'BTC') {
-            if (newValue.endsWith('.')) {
-                setPrice(newValue);
-                return;
-            }
-            if (isFocused) {
-                setPrice(newValue);
-            } else {
-                newPrice = parseFloat(newValue).toFixed(8);
-                setPrice(newPrice);
-            }
-            return;
-        }
-
-        if (newPrice >= inputMin && newPrice <= inputMax) {
-            setPrice(newPrice);
-        }
-    };
-
     // Function to handle focus on the input
     const handleFocus = () => {
         setIsFocused(true);
@@ -342,23 +284,108 @@ export const ReactBtcPayButton = ({
         setPrice(prevPrice => parseFloat(prevPrice).toFixed(8));
     };
 
-    // Function to format the price
-    const formatPrice = (price, curr) => {
-        if (curr === 'BTC') {
-            if (!isFocused) {
-                const formattedPrice = parseFloat(price).toFixed(8);
-                // Remove decimal part if it's all zeros
-                const [whole, decimal] = formattedPrice.split('.');
-                if (decimal === '00000000') {
-                    return whole;
-                }
-                return formattedPrice;
-            }
-            return price;
-        } else if (curr === 'SATS') {
-            return parseInt(price, 10).toLocaleString();
+    // Function to handle changes in currency selection
+    const handleCurrencyChange = (e) => {
+        // Get the newly selected currency from the event
+        const newCurrency = e.target.value;
+
+        // Update the current currency state
+        setCurrency(newCurrency);
+
+        // Conversion constants
+        const SATS_PER_BTC = 100000000;
+
+        // Handle currency conversion between SATs and BTC
+        if (prevCurrency === 'SATS' && newCurrency === 'BTC') {
+            // Convert SATs to BTC by dividing by 100,000,000 and rounding to 8 decimal places
+            setPrice((price / SATS_PER_BTC).toFixed(8));
+        } else if (prevCurrency === 'BTC' && newCurrency === 'SATS') {
+            // Convert BTC to SATs by multiplying by 100,000,000 and flooring to an integer
+            setPrice(Math.floor(price * SATS_PER_BTC));
         }
+
+        // Update the previous currency state for future conversions
+        setPrevCurrency(newCurrency);
+    };
+
+    // Function to handle changes in the slider
+    const handleSliderChange = (e) => {
+        const scrubbedValue = parseInt(e.target.value, 10);
+        if (!isNaN(scrubbedValue) && scrubbedValue >= sliderMin && scrubbedValue <= sliderMax) {
+            setPrice(scrubbedValue);
+        }
+    };
+
+    // Function to handle changes in the price input
+    const handlePriceChange = (e) => {
+        // Remove commas from the input value for processing
+        const rawValue = e.target.value.replace(/,/g, '');
+
+        // Initialize newPrice variable
+        let newPrice;
+
+        // Convert to appropriate number type based on currency
+        newPrice = (currency === 'BTC') ? parseFloat(rawValue) : parseInt(rawValue, 10);
+
+        // Handle empty or invalid input
+        if (rawValue === '' || isNaN(newPrice)) {
+            setPrice(0);
+            return;
+        }
+
+        // Special handling for BTC currency
+        if (currency === 'BTC') {
+            // Preserve decimal point if it's the last character
+            if (rawValue.endsWith('.')) {
+                setPrice(rawValue);
+                return;
+            }
+            // Update price based on focus state
+            setPrice(isFocused ? rawValue : newPrice.toFixed(8));
+            return;
+        }
+
+        // Validate newPrice against inputMin and inputMax for other currencies
+        if (newPrice >= inputMin && newPrice <= inputMax) {
+            setPrice(newPrice);
+        }
+    };
+
+    // Function to format the price based on the currency type
+    const formatPrice = (price, curr) => {
+        // Convert price to float and integer for calculations
+        const numPrice = parseFloat(price);
+        const intPrice = parseInt(price, 10);
+
+        // Handle Bitcoin (BTC) formatting
+        if (curr === 'BTC') {
+            return isFocused ? price : formatBTC(numPrice);
+        }
+
+        // Handle Satoshi (SATS) formatting
+        if (curr === 'SATS') {
+            return intPrice.toLocaleString();
+        }
+
+        // Handle Fiat currencies like USD and EUR (ADD MORE HERE)
+        if (['USD', 'EUR', 'CAD', 'AUD'].includes(curr)) {
+            return numPrice.toLocaleString('en-US');
+        }
+
+        // Default: Return the original price for other currencies
         return price;
+    };
+
+    // Helper function to format Bitcoin (BTC) prices
+    const formatBTC = (price) => {
+        // Convert to 8 decimal places
+        const formatted = price.toFixed(8);
+        const [whole, decimal] = formatted.split('.');
+
+        // Remove trailing zeros in decimal part
+        return decimal === '00000000'
+            ? parseInt(whole, 10).toLocaleString()
+            : formatted.toLocaleString('en-US', { minimumFractionDigits: 8, maximumFractionDigits: 8 });
     };
 
     // Function to increment or decrement price
@@ -404,14 +431,19 @@ export const ReactBtcPayButton = ({
         xhttp.send(new FormData(e.target));
     };
 
+    // Function to strip 'http://' or 'https://' from the domain
+    const stripHttpHttps = (domain) => {
+        return domain.replace(/^https?:\/\//, '');
+    };
+
     // Load BTCPay script if it's not already loaded (Modal version)
     useEffect(() => {
         if (!window.btcpay) {
-            // Check if script is already added
-            const existingScript = document.querySelector(`script[src="https://${btcPayDomain}/modal/btcpay.js"]`);
+            const strippedDomain = stripHttpHttps(btcPayDomain);
+            const existingScript = document.querySelector(`script[src="https://${strippedDomain}/modal/btcpay.js"]`);
             if (!existingScript) {
                 const script = document.createElement('script');
-                script.src = `https://${btcPayDomain}/modal/btcpay.js`;
+                script.src = `https://${strippedDomain}/modal/btcpay.js`;
                 document.getElementsByTagName('head')[0].appendChild(script);
             }
         }
@@ -434,7 +466,7 @@ export const ReactBtcPayButton = ({
     return (
         <form
             method="POST"
-            action={`https://${btcPayDomain}/api/v1/invoices`}
+            action={`https://${stripHttpHttps(btcPayDomain)}/api/v1/invoices`}
             onSubmit={handleFormSubmit}
             style={formStyles}
         >
@@ -564,7 +596,7 @@ export const ReactBtcPayButton = ({
                 </span>
                 {imageShow && (
                     <img
-                        src={`https://${btcPayDomain}/img/paybutton/logo.svg`}
+                        src={`https://${stripHttpHttps(btcPayDomain)}/img/paybutton/logo.svg`}
                         alt="BTCPay Logo"
                         style={imageStyles}
                     />
