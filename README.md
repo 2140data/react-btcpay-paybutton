@@ -320,7 +320,7 @@ Advanced Usage Example showing ALL available options:
 
   // === OPTIONAL Style Props ===
   
-  // Default input field styles
+  // Default Input Field styles
   amountInputStyles={{
     MozAppearance: 'textfield',
     WebkitAppearance: 'textfield',
@@ -339,7 +339,7 @@ Advanced Usage Example showing ALL available options:
     maxWidth: '100%'
   }}
   
-  // Default form styles
+  // Default Form styles
   formStyles={{
     display: 'inline-flex',
     flexDirection: 'column',
@@ -347,7 +347,7 @@ Advanced Usage Example showing ALL available options:
     alignItems: 'center'
   }}
   
-  // Default plus/minus button styles
+  // Default Plus/Minus Button styles
   plusMinusButtonStyles={{
     cursor: 'pointer',
     fontSize: '25px',
@@ -363,7 +363,7 @@ Advanced Usage Example showing ALL available options:
     justifyContent: 'center'
   }}
   
-  // Default slider styles
+  // Default Range Slider styles
   rangeInputStyles={{
     MozAppearance: 'none',
     WebkitAppearance: 'none',
@@ -375,7 +375,7 @@ Advanced Usage Example showing ALL available options:
     outline: 0
   }}
   
-  // Default select styles
+  // Default Select (Dropdown) styles
   selectStyles={{
     MozAppearance: 'none',
     WebkitAppearance: 'none',
@@ -393,7 +393,7 @@ Advanced Usage Example showing ALL available options:
     cursor: 'pointer'
   }}
   
-  // Default submit button styles
+  // Default Submit Button styles
   submitButtonStyles={{
     marginTop: '1rem',
     marginBottom: '2rem',
@@ -405,7 +405,7 @@ Advanced Usage Example showing ALL available options:
     border: '2px solid transparent'
   }}
   
-  // Default submit button text styles
+  // Default Submit Button Text styles
   submitButtonTextStyles={{
     color: '#fff',
     fontSize: '16px'
