@@ -25,6 +25,8 @@ The React BTCPay Server Pay Button offers a seamless and highly configurable sol
     ```
 2. **Proceed to Next Step**: Once the package is installed, move on to [Step 1: Import the Component](#step-1-import-the-component) to integrate the `ReactBtcPayButton` into your app.
 
+---
+
 #### *Optional: Manual Installation*
 
 1. **Download the File**: Manually download and copy the `ReactBtcPayButton.jsx` file into your React app's directory.
@@ -33,6 +35,8 @@ The React BTCPay Server Pay Button offers a seamless and highly configurable sol
     import { ReactBtcPayButton } from 'path/to/ReactBtcPayButton.jsx';
     ```
 3. **Proceed to Next Step**: After importing, you can move on to [Step 2: Add Component to Your App](#step-2-add-component-to-your-app).
+
+---
 
 ## Quick Start
 
