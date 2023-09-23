@@ -4,6 +4,28 @@
 
 The React BTCPay Server Pay Button offers a seamless and highly configurable solution for integrating BTCPay Server functionality into your React application. Enable Bitcoin payment processing in your app with just three simple steps.
 
+:warning: **ATTENTION** :warning:  
+This project assumes your BTCPay Server is already set up and your Pay Button is turned on. You should also already have your wallet set up and have some inbound Lightning liquidity (if accepting Lightning payments). Refer to the [BTCPay Server documentation](https://docs.btcpayserver.org/) for more information.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+  - [RECOMMENDED: Package Installation](#recommended-package-installation)
+  - [*Optional: Manual Installation*](#optional-manual-installation)
+- [Quick Start](#quick-start)
+  - [Step 1: Import the Component](#step-1-import-the-component)
+  - [Step 2: Add Component to Your App](#step-2-add-component-to-your-app)
+  - [Step 3: Customize Settings and Design](#step-3-customize-settings-and-design)
+- [How to Use ReactBtcPayButton Props](#how-to-use-reactbtcpaybutton-props)
+- [Advanced Usage Example](#advanced-usage-example)
+- [Additional Resources](#additional-resources)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
+
 ## Features
 
 - **Easy Setup**: Just 3 easy steps to add the button to your React app.
@@ -414,7 +436,7 @@ Advanced Usage Example showing ALL available options:
 
 ```
   
-## Documentation
+## Additional Resources
 
 For more information about BTCPay Server or React, please refer to the [BTCPay Server Documentation](https://docs.btcpayserver.org/) and [React Documentation](https://legacy.reactjs.org/docs/getting-started.html).
 
