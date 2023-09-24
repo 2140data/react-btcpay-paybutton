@@ -10,9 +10,6 @@ The React BTCPay Server Pay Button offers a seamless and highly configurable sol
 - **Highly Customizable**: Modify button text, currency options, colors and more.
 - **Private**: All transactions are processed through your BTCPay Server.
 
-### Before You Begin 
-This project assumes your BTCPay Server is already set up and your Pay Button is turned ON. You should also already have your wallet set up and have some channels with inbound liquidity (if accepting Lightning payments). Refer to the [BTCPay Server documentation](https://docs.btcpayserver.org/) for more information.
-
 ## Table of Contents
 
 - [Overview](#overview)
@@ -36,6 +33,9 @@ This project assumes your BTCPay Server is already set up and your Pay Button is
 
 - **BTCPay Server**: You must have access to a BTCPay Server, either self-hosted or through a third-party.
 - **React Application**: This component is intended to be used within an existing React application.
+
+### Before You Begin 
+This project assumes your BTCPay Server is already set up and your Pay Button is turned ON. You should also already have your wallet set up and have some channels with inbound liquidity (if accepting Lightning payments). Refer to the [BTCPay Server documentation](https://docs.btcpayserver.org/) for more information.
 
 ## Installation
 
