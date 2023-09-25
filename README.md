@@ -4,14 +4,18 @@
 
 The React BTCPay Server Pay Button offers a seamless and highly configurable solution for integrating BTCPay Server functionality into your React application. Enable Bitcoin payment processing in your app with just three simple steps.
 
-:warning: **ATTENTION** :warning:  
-This project assumes your BTCPay Server is already set up and your Pay Button is turned on. You should also already have your wallet set up and have some inbound Lightning liquidity (if accepting Lightning payments). Refer to the [BTCPay Server documentation](https://docs.btcpayserver.org/) for more information.
+## Features
+
+- **Easy Setup**: Just 3 easy steps to add the button to your React app.
+- **Highly Customizable**: Modify button text, currency options, colors and more.
+- **Private**: All transactions are processed through your BTCPay Server.
 
 ## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
 - [Requirements](#requirements)
+- [Before You Begin](#before-you-begin)
 - [Installation](#installation)
   - [RECOMMENDED: Package Installation](#recommended-package-installation)
   - [*Optional: Manual Installation*](#optional-manual-installation)
@@ -26,16 +30,13 @@ This project assumes your BTCPay Server is already set up and your Pay Button is
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
-## Features
-
-- **Easy Setup**: Just 3 easy steps to add the button to your React app.
-- **Highly Customizable**: Modify button text, currency options, colors and more.
-- **Private**: All transactions are processed through your BTCPay Server.
-
 ## Requirements
 
 - **BTCPay Server**: You must have access to a BTCPay Server, either self-hosted or through a third-party.
 - **React Application**: This component is intended to be used within an existing React application.
+
+### Before You Begin 
+This project assumes your BTCPay Server is already set up and your Pay Button is turned ON. You should also already have your wallet set up and have some channels with inbound liquidity (if accepting Lightning payments). Refer to the [BTCPay Server documentation](https://docs.btcpayserver.org/) for more information.
 
 ## Installation
 
