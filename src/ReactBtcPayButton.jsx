@@ -418,17 +418,27 @@ export const ReactBtcPayButton = ({
     // Function to handle form submission
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        const xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200 && this.responseText) {
-                const parsedResponse = JSON.parse(this.responseText);
-                if (parsedResponse && parsedResponse.invoiceId) {
-                    window.btcpay.appendInvoiceFrame(parsedResponse.invoiceId);
+        try {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200 && this.responseText) {
+                    const parsedResponse = JSON.parse(this.responseText);
+                    if (parsedResponse && parsedResponse.invoiceId) {
+                        if (window.btcpay) {
+                            window.btcpay.appendInvoiceFrame(parsedResponse.invoiceId);
+                        } else {
+                            console.error("BTCPay script is not loaded.");
+                        }
+                    } else {
+                        console.error("Invalid response from server:", this.responseText);
+                    }
                 }
-            }
-        };
-        xhttp.open('POST', e.target.getAttribute('action'), true);
-        xhttp.send(new FormData(e.target));
+            };
+            xhttp.open('POST', e.target.getAttribute('action'), true);
+            xhttp.send(new FormData(e.target));
+        } catch (error) {
+            console.error("An error occurred during form submission:", error);
+        }
     };
 
     // Function to strip 'http://' or 'https://' from the domain
@@ -438,26 +448,34 @@ export const ReactBtcPayButton = ({
 
     // Load BTCPay script if it's not already loaded (Modal version)
     useEffect(() => {
-        if (!window.btcpay) {
-            const strippedDomain = stripHttpHttps(btcPayDomain);
-            const existingScript = document.querySelector(`script[src="https://${strippedDomain}/modal/btcpay.js"]`);
-            if (!existingScript) {
-                const script = document.createElement('script');
-                script.src = `https://${strippedDomain}/modal/btcpay.js`;
-                document.getElementsByTagName('head')[0].appendChild(script);
+        try {
+            if (!window.btcpay) {
+                const strippedDomain = stripHttpHttps(btcPayDomain);
+                const existingScript = document.querySelector(`script[src="https://${strippedDomain}/modal/btcpay.js"]`);
+                if (!existingScript) {
+                    const script = document.createElement('script');
+                    script.src = `https://${strippedDomain}/modal/btcpay.js`;
+                    document.getElementsByTagName('head')[0].appendChild(script);
+                }
             }
+        } catch (error) {
+            console.error("An error occurred while loading BTCPay script:", error);
         }
     }, [btcPayDomain]);
 
     // Inject styles into head
     useEffect(() => {
-        // Check if the style tag already exists
-        const existingStyle = document.querySelector('style[data-btcpay]');
-        if (!existingStyle) {
-            const styleTag = document.createElement('style');
-            styleTag.setAttribute('data-btcpay', ''); // add an attribute to mark this style tag
-            styleTag.innerHTML = btcPayButtonStyles;
-            document.getElementsByTagName('head')[0].appendChild(styleTag);
+        try {
+            // Check if the style tag already exists
+            const existingStyle = document.querySelector('style[data-btcpay]');
+            if (!existingStyle) {
+                const styleTag = document.createElement('style');
+                styleTag.setAttribute('data-btcpay', ''); // add an attribute to mark this style tag
+                styleTag.innerHTML = btcPayButtonStyles;
+                document.getElementsByTagName('head')[0].appendChild(styleTag);
+            }
+        } catch (error) {
+            console.error("An error occurred while injecting styles:", error);
         }
     }, [btcPayButtonStyles]);
 

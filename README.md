@@ -15,6 +15,7 @@ The React BTCPay Server Pay Button offers a seamless and highly configurable sol
 - [Overview](#overview)
 - [Features](#features)
 - [Requirements](#requirements)
+- [Before You Begin](#before-you-begin)
 - [Installation](#installation)
   - [RECOMMENDED: Package Installation](#recommended-package-installation)
   - [*Optional: Manual Installation*](#optional-manual-installation)
