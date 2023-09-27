@@ -1,7 +1,7 @@
 {
   "name": "react-btcpay-paybutton",
   "version": "1.0.0",
-  "description": "Add a BTCPay Server Pay Button into your React app for BTC payments",
+  "description": "Accept BTC payments in your React app with BTCPay Server Pay Button",
   "main": "src/index.js",
   "files": ["src/ReactBtcPayButton.jsx", "src/index.js"],
   "scripts": {
