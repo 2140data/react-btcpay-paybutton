@@ -88,7 +88,7 @@ To integrate the React BTCPay Button into your application, simply include it in
 
 The `ReactBtcPayButton` component accepts various props that allow you to customize its behavior and appearance. Below are detailed explanations for each of these props:
 
-#### REQUIRED Props
+#### :red_circle: REQUIRED Props
 
 | Prop          | Type     | Description                                       | Default Value | Available Options |
 |---------------|----------|---------------------------------------------------|---------------|-------------------|
@@ -102,7 +102,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 | `browserRedirect`     | `string` | The URL for browser redirection after payment.     | `''`               | Add a URL                 |
 | `checkoutDesc`        | `string` | Description that appears on the checkout invoice.  | `''`               | Add a description         |
 | `currency`            | `string` | Specifies the default currency for payments. [MORE INFO](#details-currency)      | `'SATS'`            | `'SATS', 'BTC'` |
-| `currencyOptions`     | `array of strings`  | Defines the set of currencies inside the currency switcher dropdown. [MORE INFO](#details-currency-options)  | `['SATS', 'BTC']`          | `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']` |
+| `currencyOptions`     | `array of strings`  | Defines the available currencies inside the BTCPay form's Currency dropdown. [MORE INFO](#details-currency-options)  | `['SATS', 'BTC']`          | `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD', 'JPY', 'GBP']` |
 | `defaultPaymentMethod`| `string` | Specifies the payment method that will be used to process transactions. [MORE INFO](#details-default-payment-method)  | `''`            | `'', 'BTC_LightningLike', 'BTC'`           |
 | `imageShow`           | `boolean`| Choose to show or hide the BTCPay logo on button.          | `true`             | `true`, `false`           |
 | `imageSize`           | `string` | Specifies the height for the BTCPay logo on button.        | `'46px'`            | Enter any CSS size (px, % or rem)  |

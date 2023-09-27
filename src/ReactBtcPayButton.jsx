@@ -368,7 +368,7 @@ export const ReactBtcPayButton = ({
         }
 
         // Handle Fiat currencies like USD and EUR (ADD MORE HERE)
-        if (['USD', 'EUR', 'CAD', 'AUD'].includes(curr)) {
+        if (['USD', 'EUR', 'CAD', 'AUD', 'JPY', 'GBP'].includes(curr)) {
             return numPrice.toLocaleString('en-US');
         }
 
