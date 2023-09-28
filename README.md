@@ -176,7 +176,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 - **Use With**: `currency`
 - **Required**: No (Optional)
 - **Description**: Defines the list of currencies that will be available in the dropdown for the user to select. This should be used in conjunction with the `currency` prop.
-- **Default**: `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']`. More currencies will be supported soon!
+- **Default**: `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD', 'JPY', 'GBP']`. More currencies will be supported soon!
 
 :warning: **IMPORTANT** :warning:  
 If you add new currencies, you must set a 'Preferred Price Source' in BTCPay Server under Store Settings > Rates. [See the BTCPay documentation](https://docs.btcpayserver.org/FAQ/Stores/#how-to-change-the-exchange-rate-provider-for-invoices)
@@ -327,7 +327,7 @@ Advanced Usage Example showing ALL available options:
   browserRedirect='https://redirect.com' // Browser redirect URL
   checkoutDesc='Thank you for your payment!' // Invoice description
   currency='SATS' // Default currency for invoices
-  currencyOptions={['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']} // Options for dropdown
+  currencyOptions={['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD', 'JPY', 'GBP']} // Options for dropdown
   defaultPaymentMethod='' // How BTCPay Server will process transactions
   imageShow={true} // BTCPay logo in button? {true} or {false}
   imageSize='46px' // BTCPay Server logo height
