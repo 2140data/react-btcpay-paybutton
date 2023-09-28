@@ -17,7 +17,7 @@ node_modules/
 .vscode/
 
 # Build directory
-/dist
+dist/
 
 # Environment files
 .env
