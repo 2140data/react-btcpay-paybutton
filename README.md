@@ -30,13 +30,21 @@ The React BTCPay Server Pay Button offers a seamless and highly configurable sol
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
+---
+
 ## Requirements
 
 - **BTCPay Server**: You must have access to a BTCPay Server, either self-hosted or through a third-party.
 - **React Application**: This component is intended to be used within an existing React application.
 
 ### Before You Begin 
-This project assumes your BTCPay Server is already set up and your Pay Button is turned ON. You should also already have your wallet set up and have some channels with inbound liquidity (if accepting Lightning payments). Refer to the [BTCPay Server documentation](https://docs.btcpayserver.org/) for more information.
+This project assumes your BTCPay Server is already set up and your Pay Button is turned ON. You should also already have your wallet set up and have some channels with inbound liquidity (if accepting Lightning payments).  
+  
+Refer to the [BTCPay Server documentation](https://docs.btcpayserver.org/) for more information.  
+  
+::Warning:: The BTCPay Server Pay Button should only be used for tips and donations. Using the pay button for e-commerce integrations is not recommended since order relevant information can be modified by the user. For e-commerce, you should use BTCPay Server's [Greenfield API](https://docs.btcpayserver.org/API/Greenfield/v1/). If your app processes commercial transactions, you should create a separate store before using the pay button.
+
+---
 
 ## Installation
 
@@ -323,7 +331,7 @@ Advanced Usage Example showing ALL available options:
   btcPayDomain='server.com' // REQUIRED - BTCPay Server domain
   storeId='storeid' // REQUIRED - BTCPay Server Store ID
   
-  // === OPTIONAL Additional Props ===
+  // === OPTIONAL Additional Props === 
   browserRedirect='https://redirect.com' // Browser redirect URL
   checkoutDesc='Thank you for your payment!' // Invoice description
   currency='SATS' // Default currency for invoices
