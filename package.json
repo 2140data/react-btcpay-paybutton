@@ -6,6 +6,7 @@
   "files": [
     "dist"
   ],
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "webpack",
     "prepublishOnly": "npm run build"
