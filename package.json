@@ -2,10 +2,14 @@
   "name": "react-btcpay-paybutton",
   "version": "1.0.0",
   "description": "Accept BTC payments in your React app with BTCPay Server Pay Button",
-  "main": "src/index.js",
-  "files": ["src/ReactBtcPayButton.jsx", "src/index.js"],
+  "main": "dist/index.js",
+  "types": "index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+    "build": "webpack",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -14,10 +18,18 @@
   "author": "Ant @2140data",
   "license": "MIT",
   "peerDependencies": {
-    "react": "^17.0.0"
-  },
+    "react": "^17.0.0 || ^18.0.0"
+  },  
   "bugs": {
     "url": "https://github.com/2140data/react-btcpay-paybutton/issues"
   },
-  "homepage": "https://github.com/2140data/react-btcpay-paybutton#readme"
+  "homepage": "https://github.com/2140data/react-btcpay-paybutton#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/preset-env": "^7.22.20",
+    "@babel/preset-react": "^7.22.15",
+    "babel-loader": "^9.1.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
 }

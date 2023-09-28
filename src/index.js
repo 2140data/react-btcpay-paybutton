@@ -1,3 +1,3 @@
 // Javascript document
 
-export { ReactBtcPayButton } from './ReactBtcPayButton';
+export { ReactBtcPayButton } from './ReactBtcPayButton.jsx';
