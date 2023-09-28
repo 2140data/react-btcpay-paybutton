@@ -102,7 +102,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 | `browserRedirect`     | `string` | The URL for browser redirection after payment.     | `''`               | Add a URL                 |
 | `checkoutDesc`        | `string` | Description that appears on the checkout invoice.  | `''`               | Add a description         |
 | `currency`            | `string` | Specifies the default currency for payments. [MORE INFO](#details-currency)      | `'SATS'`            | `'SATS', 'BTC'` |
-| `currencyOptions`     | `array of strings`  | Defines the available currencies inside the BTCPay form's Currency dropdown. [MORE INFO](#details-currency-options)  | `['SATS', 'BTC']`          | `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD', 'JPY', 'GBP']` |
+| `currencyOptions`     | `array of strings`  | Defines the currencies inside the BTCPay form's Currency dropdown. [MORE INFO](#details-currency-options)  | `['SATS', 'BTC']`          | `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD', 'JPY', 'GBP']` |
 | `defaultPaymentMethod`| `string` | Specifies the payment method that will be used to process transactions. [MORE INFO](#details-default-payment-method)  | `''`            | `'', 'BTC_LightningLike', 'BTC'`           |
 | `imageShow`           | `boolean`| Choose to show or hide the BTCPay logo on button.          | `true`             | `true`, `false`           |
 | `imageSize`           | `string` | Specifies the height for the BTCPay logo on button.        | `'46px'`            | Enter any CSS size (px, % or rem)  |
