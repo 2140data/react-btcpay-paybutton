@@ -1,5 +1,3 @@
-// React document
-
 // Import necessary modules from React and the stylesheet
 import React, { useState, useEffect } from 'react';
 // OPTIONAL: import PropTypes from 'prop-types';
