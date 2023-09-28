@@ -1,0 +1,14 @@
+# Ignore development files
+node_modules/
+*.log
+
+# Ignore all .md files (optional)
+*.md
+
+# Ignore all test files and directories (if any)
+__tests__/
+*.test.js
+
+# Ignore config files
+.babelrc
+webpack.config.js

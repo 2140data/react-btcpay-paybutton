@@ -36,7 +36,11 @@ The React BTCPay Server Pay Button offers a seamless and highly configurable sol
 - **React Application**: This component is intended to be used within an existing React application.
 
 ### Before You Begin 
-This project assumes your BTCPay Server is already set up and your Pay Button is turned ON. You should also already have your wallet set up and have some channels with inbound liquidity (if accepting Lightning payments). Refer to the [BTCPay Server documentation](https://docs.btcpayserver.org/) for more information.
+This project assumes your BTCPay Server is already set up and your Pay Button is turned ON. You should also have your wallet set up and have channels with inbound liquidity (if accepting Lightning payments).  
+  
+Refer to the [BTCPay Server documentation](https://docs.btcpayserver.org/) for more information.  
+  
+::warning:: The BTCPay Server Pay Button should only be used for tips and donations. Using the pay button for e-commerce integrations is not recommended since order relevant information can be modified by the user. For e-commerce, you should use BTCPay Server's [Greenfield API](https://docs.btcpayserver.org/API/Greenfield/v1/). If your app processes commercial transactions, you should create a separate store before using the pay button.
 
 ## Installation
 
@@ -57,9 +61,7 @@ This project assumes your BTCPay Server is already set up and your Pay Button is
     ```jsx
     import { ReactBtcPayButton } from 'path/to/ReactBtcPayButton.jsx';
     ```
-3. **Proceed to Next Step**: After importing, you can move on to [Add Component to Your App](#step-2-add-component-to-your-app).
-
----
+3. **Proceed to Next Step**: After importing, you can move on to [Add Component to Your App](#step-2-add-component-to-your-app).  
 
 ## Quick Start
 
@@ -102,7 +104,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 | `browserRedirect`     | `string` | The URL for browser redirection after payment.     | `''`               | Add a URL                 |
 | `checkoutDesc`        | `string` | Description that appears on the checkout invoice.  | `''`               | Add a description         |
 | `currency`            | `string` | Specifies the default currency for payments. [MORE INFO](#details-currency)      | `'SATS'`            | `'SATS', 'BTC'` |
-| `currencyOptions`     | `array of strings`  | Defines the available currencies inside the BTCPay form's Currency dropdown. [MORE INFO](#details-currency-options)  | `['SATS', 'BTC']`          | `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD', 'JPY', 'GBP']` |
+| `currencyOptions`     | `array of strings`  | Defines the currencies inside the BTCPay form's Currency dropdown. [MORE INFO](#details-currency-options)  | `['SATS', 'BTC']`          | `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD', 'JPY', 'GBP']` |
 | `defaultPaymentMethod`| `string` | Specifies the payment method that will be used to process transactions. [MORE INFO](#details-default-payment-method)  | `''`            | `'', 'BTC_LightningLike', 'BTC'`           |
 | `imageShow`           | `boolean`| Choose to show or hide the BTCPay logo on button.          | `true`             | `true`, `false`           |
 | `imageSize`           | `string` | Specifies the height for the BTCPay logo on button.        | `'46px'`            | Enter any CSS size (px, % or rem)  |
@@ -176,7 +178,7 @@ The `ReactBtcPayButton` component accepts various props that allow you to custom
 - **Use With**: `currency`
 - **Required**: No (Optional)
 - **Description**: Defines the list of currencies that will be available in the dropdown for the user to select. This should be used in conjunction with the `currency` prop.
-- **Default**: `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']`. More currencies will be supported soon!
+- **Default**: `['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD', 'JPY', 'GBP']`. More currencies will be supported soon!
 
 :warning: **IMPORTANT** :warning:  
 If you add new currencies, you must set a 'Preferred Price Source' in BTCPay Server under Store Settings > Rates. [See the BTCPay documentation](https://docs.btcpayserver.org/FAQ/Stores/#how-to-change-the-exchange-rate-provider-for-invoices)
@@ -323,11 +325,11 @@ Advanced Usage Example showing ALL available options:
   btcPayDomain='server.com' // REQUIRED - BTCPay Server domain
   storeId='storeid' // REQUIRED - BTCPay Server Store ID
   
-  // === OPTIONAL Additional Props ===
+  // === OPTIONAL Additional Props === 
   browserRedirect='https://redirect.com' // Browser redirect URL
   checkoutDesc='Thank you for your payment!' // Invoice description
   currency='SATS' // Default currency for invoices
-  currencyOptions={['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD']} // Options for dropdown
+  currencyOptions={['SATS', 'BTC', 'USD', 'EUR', 'CAD', 'AUD', 'JPY', 'GBP']} // Options for dropdown
   defaultPaymentMethod='' // How BTCPay Server will process transactions
   imageShow={true} // BTCPay logo in button? {true} or {false}
   imageSize='46px' // BTCPay Server logo height

@@ -51,6 +51,7 @@ export const ReactBtcPayButton = ({
     // State to track if the input field is focused
     const [isFocused, setIsFocused] = React.useState(false);
 
+    // Styles
     const formStyles = {
         display: 'inline-flex',
         flexDirection: 'column',

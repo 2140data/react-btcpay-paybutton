@@ -18,6 +18,7 @@ node_modules/
 
 # Build directory
 /build
+/dist
 
 # Environment files
 .env
@@ -28,4 +29,7 @@ node_modules/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Ignore generated packages
+*.tgz
 
